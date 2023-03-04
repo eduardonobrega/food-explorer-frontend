@@ -18,12 +18,15 @@ export const Container = styled.div`
     transition: outline 300ms;
 
     &:focus {
-      outline: 2px solid ${({ theme }) => theme.TINTS.CAKE[100]};
+      outline: 2px solid ${({ theme }) => theme.TINTS.CAKE[300]};
+    }
+
+    &:valid {
+      outline: 2px solid ${({ theme }) => theme.TINTS.TOMATO[100]};
     }
 
     &::placeholder {
       color: ${({ theme }) => theme.LIGHT[500]};
     }
-    
   }
 `;

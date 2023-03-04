@@ -38,6 +38,7 @@ export default {
       CAKE: {
         100: '#065E7C',
         200: '#82F3FF',
+        300: '#42d3ff',
       },
       CARROT: '#FBA94C',
 

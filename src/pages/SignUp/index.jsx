@@ -4,7 +4,7 @@ import { LinkText } from '../../components/LinkText';
 
 import { Container, Form } from './styles';
 
-export function SignIn() {
+export function SignUp() {
   return (
     <Container>
       <h1>
@@ -23,8 +23,15 @@ export function SignIn() {
         food explorer
       </h1>
       <Form onSubmit={(e) => e.preventDefault()}>
-        <h2>Faça login</h2>
+        <h2>Crie sua conta</h2>
 
+        <Input
+          type="text"
+          id="name"
+          label="Seu nome"
+          placeholder="Maria da Silva"
+          required
+        />
         <Input
           type="email"
           id="email"
@@ -41,8 +48,8 @@ export function SignIn() {
           minLength="6"
           required
         />
-        <Button title="Entrar" />
-        <LinkText name="Criar uma conta" to="/register"/>
+        <Button title="Criar conta" />
+        <LinkText name="Já tenho uma conta" to={-1} />
       </Form>
     </Container>
   );
