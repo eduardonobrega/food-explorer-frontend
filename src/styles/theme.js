@@ -35,12 +35,13 @@ export default {
         300: '#AB222E',
         400: '#AB4D55',
       },
-    },
-    CARROT: '#FBA94C',
-    MINT: '#04D361',
-    CAKE: {
-      100: '#065E7C',
-      200: '#82F3FF',
+      CAKE: {
+        100: '#065E7C',
+        200: '#82F3FF',
+      },
+      CARROT: '#FBA94C',
+
+      MINT: '#04D361',
     },
   },
 };

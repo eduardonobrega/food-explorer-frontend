@@ -39,10 +39,17 @@ textarea {
 
 body {
   min-height: 100vh;
+
+  background-color: ${({ theme }) => theme.DARK[100]};
+  color: ${({ theme }) => theme.LIGHT[300]};
 }
 
  a {
     text-decoration: none;
+  }
+  button {
+    border: none;
+
   }
   button, a {
     cursor: pointer;
