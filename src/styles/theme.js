@@ -1,33 +1,46 @@
 export default {
-  light: {
-    backgroundBase: '#f9f9f9',
-    backgroundLevel1: '#ffffff',
-    backgroundLevel2: '#f0f0f0',
-    borderBase: '#e5e5e5',
-    textColorBase: '#222222',
-  },
-  dark: {
-    backgroundBase: '#181818',
-    backgroundLevel1: '#202020',
-    backgroundLevel2: '#313131',
-    borderBase: '#383838',
-    textColorBase: '#FFFFFF',
+  darkTheme: {
+    LIGHT: {
+      100: '#FFFFFF',
+      200: '#FFFAF1',
+      300: '#E1E1E6',
+      400: '#C4C4CC',
+      500: '#7C7C8A',
+      600: '#76797B',
+      700: '#4D585E',
+    },
+
+    DARK: {
+      100: '#000405',
+      200: '#00070A',
+      300: '#000204',
+      400: '#000A0F',
+      500: '#000C12',
+      600: '#00111A',
+      700: '#001119',
+      800: '#0D161B',
+      900: '#0D1D25',
+      1000: '#192227',
+    },
+
+    GRADIENTS: {
+      100: 'linear-gradient(90deg, rgba(0, 10, 15, 0.272541) 0%, #000A0F 100%);',
+      200: 'linear-gradient(180deg, #091E26 0%, #00131C 100%);',
+    },
+
+    TINTS: {
+      TOMATO: {
+        100: '#750310',
+        200: '#92000E',
+        300: '#AB222E',
+        400: '#AB4D55',
+      },
+    },
+    CARROT: '#FBA94C',
+    MINT: '#04D361',
+    CAKE: {
+      100: '#065E7C',
+      200: '#82F3FF',
+    },
   },
 };
-/* 
-export default {
-  COLORS: {
-    BACKGROUND_900: "#232129",
-    BACKGROUND_800: "#312E38",
-    BACKGROUND_700: "#3E3B47",
-
-    WHITE: "#F4EDE8",
-    ORANGE: "#FF9000",
-
-    GRAY_100: "#999591",
-    GRAY_300: "#666360",
-
-    RED: "#FF002E"
-  }
-}
-*/
