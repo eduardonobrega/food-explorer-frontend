@@ -8,7 +8,9 @@ export const Container = styled(Link)`
   font-size: 1.4rem;
   font-weight: 500;
   text-align: center;
-
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 0.1667rem + 1.0417vw, 1rem);
   &:hover {
     color: ${({ theme }) => theme.TINTS.CAKE[200]};
   }
