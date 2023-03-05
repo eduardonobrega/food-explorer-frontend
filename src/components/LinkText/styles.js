@@ -10,8 +10,10 @@ export const Container = styled(Link)`
   text-align: center;
   display: flex;
   align-items: center;
-  gap: clamp(0.5rem, 0.1667rem + 1.0417vw, 1rem);
   &:hover {
     color: ${({ theme }) => theme.TINTS.CAKE[200]};
+  }
+  > svg {
+    font-size: 3rem;
   }
 `;

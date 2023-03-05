@@ -1,11 +1,13 @@
+import { FiChevronLeft } from 'react-icons/fi';
+
 import { Container, Content } from './styles';
 
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { LinkText } from '../../components/LinkText';
 import { Ingredient } from '../../components/Ingredient';
+import { Counter } from '../../components/Counter';
 
-import caretLeft from '../../assets/icons/caretLeft.svg';
 import ravanello300 from '../../assets/ravanello-300.png';
 import ravanello400 from '../../assets/ravanello-400.png';
 
@@ -16,7 +18,7 @@ export function Dish() {
       <main>
         <Content>
           <div>
-            <LinkText name="Voltar" icon={caretLeft} />
+            <LinkText name="Voltar" icon={FiChevronLeft} />
             <picture>
               <source
                 media="(max-width: 640px)"
@@ -35,8 +37,15 @@ export function Dish() {
             </p>
 
             <ul>
-              <Ingredient name='alface' />
+              <Ingredient name="alface" />
+              <Ingredient name="cebola" />
+              <Ingredient name="pã o naan" />
+              <Ingredient name="pepino" />
+              <Ingredient name="rabanete" />
+              <Ingredient name="tomate" />
             </ul>
+
+            <Counter quantity="05" />
           </div>
         </Content>
       </main>

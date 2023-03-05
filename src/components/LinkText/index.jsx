@@ -1,14 +1,10 @@
-import { Container } from "./styles";
+import { Container } from './styles';
 
-export function LinkText({name, icon, ...rest}) {
-  return(
+export function LinkText({ name, icon: Icon, ...rest }) {
+  return (
     <Container {...rest}>
-      {
-        icon && (
-          <img src={icon} />
-        )
-      }
+      {Icon && <Icon />}
       {name}
     </Container>
-  )
+  );
 }
