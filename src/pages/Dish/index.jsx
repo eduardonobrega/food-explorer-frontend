@@ -3,6 +3,7 @@ import { Container, Content } from './styles';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { LinkText } from '../../components/LinkText';
+import { Ingredient } from '../../components/Ingredient';
 
 import caretLeft from '../../assets/icons/caretLeft.svg';
 import ravanello300 from '../../assets/ravanello-300.png';
@@ -11,7 +12,7 @@ import ravanello400 from '../../assets/ravanello-400.png';
 export function Dish() {
   return (
     <Container>
-      <Header isAdmin />
+      <Header />
       <main>
         <Content>
           <div>
@@ -30,7 +31,12 @@ export function Dish() {
             <h2>Salada Ravanello</h2>
             <p>
               Rabanetes, folhas verdes e molho agridoce salpicados com gergelim.
+              O pão naan dá um toque especial.
             </p>
+
+            <ul>
+              <Ingredient name='alface' />
+            </ul>
           </div>
         </Content>
       </main>
