@@ -40,7 +40,7 @@ textarea {
 body {
   min-height: 100vh;
 
-  background-color: ${({ theme }) => theme.DARK[100]};
+  background-color: ${({ theme }) => theme.DARK[400]};
   color: ${({ theme }) => theme.LIGHT[300]};
 }
 
