@@ -16,8 +16,8 @@ import receipt from '../../assets/icons/receipt.svg';
 export function Dish({ isAdmin = false }) {
   return (
     <Container>
-      <Header isAdmin />
-
+      <Header />
+      
       <LinkText name="voltar" icon={FiChevronLeft} />
 
       <main>
