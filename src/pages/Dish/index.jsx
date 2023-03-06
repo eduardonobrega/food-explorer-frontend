@@ -13,15 +13,15 @@ import ravanello300 from '../../assets/ravanello-300.png';
 import ravanello400 from '../../assets/ravanello-400.png';
 import receipt from '../../assets/icons/receipt.svg';
 
-export function Dish() {
+export function Dish({ isAdmin = false }) {
   return (
     <Container>
-      <Header />
+      <Header isAdmin />
 
       <LinkText name="voltar" icon={FiChevronLeft} />
 
       <main>
-        <Content>
+        <Content isAdmin={isAdmin}>
           <picture>
             <source
               media="(max-width: 640px)"
@@ -48,8 +48,11 @@ export function Dish() {
             </ul>
 
             <div>
-              <Counter quantity="05" />
-              <Button title="pedir ∙ R$ 25,00" icon={receipt} />
+              {!isAdmin && <Counter quantity="05" />}
+              <Button
+                title={isAdmin ? 'Editar prato' : 'pedir ∙ R$ 25,00'}
+                icon={isAdmin ? undefined : receipt}
+              />
             </div>
           </div>
         </Content>

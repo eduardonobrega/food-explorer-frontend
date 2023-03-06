@@ -10,7 +10,7 @@ export const Container = styled.button`
   width: 100%;
 
   border-radius: 5px;
-  padding: 1.2rem;
+  padding: 1.2rem 2.4rem;
 
   display: flex;
   align-items: center;
