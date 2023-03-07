@@ -37,8 +37,9 @@ export function Header({ isAdmin = false }) {
 
       btnMenu.src = close;
       headerChildren[1].classList.add('hide');
-      headerChildren[5].classList.add('hide');
-      headerChildren[6].classList.remove('hide');
+      header.querySelector('button#receipt').style.display = 'none';
+
+      header.querySelector('h2').style.display = 'block';
       
     } else {
       onscroll = () => {};
@@ -47,9 +48,8 @@ export function Header({ isAdmin = false }) {
 
       btnMenu.src = menu;
       headerChildren[1].classList.remove('hide');
-      headerChildren[5].classList.remove('hide');
-      headerChildren[6].classList.add('hide');
-
+      header.querySelector('button#receipt').style.display = 'initial';
+      header.querySelector('h2').style.display = 'none'
       document.querySelector('#menuOpen').style.display = 'none'
     }
   }, [openMenu]);
@@ -57,11 +57,11 @@ export function Header({ isAdmin = false }) {
   return (
     <Container isAdmin={isAdmin}>
       <header>
-        <button>
+        <button id='menuBurgue'>
           <img src={menu} alt="menu hambúrguer" onClick={handleMenu} />
         </button>
 
-        <div>
+        <div id='logo'>
           <img src={explorer} alt="Logo foodExplorer" />
           <h1>food explorer</h1>
           {isAdmin && <span>admin</span>}
@@ -76,14 +76,15 @@ export function Header({ isAdmin = false }) {
         </div>
 
         <Button
+          id="redBtn"
           title={isAdmin ? 'Novo prato' : `Pedidos (${0})`}
           icon={isAdmin ? '' : receipt}
         />
 
-        <FiLogOut />
+        <FiLogOut id="logout" />
 
         {!isAdmin && (
-          <button>
+          <button id='receipt'>
             <img src={receipt} alt="Ícone de um recibo" />
             <span>0</span>
           </button>

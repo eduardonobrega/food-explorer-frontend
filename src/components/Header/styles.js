@@ -45,7 +45,7 @@ export const Container = styled.header`
       font-size: 2.1rem;
     }
 
-    > div:first-of-type {
+    > #logo {
       display: flex;
       align-items: center;
       gap: clamp(0.8rem, 0.6rem + 0.625vw, 1rem);
@@ -62,14 +62,14 @@ export const Container = styled.header`
 
     @media (max-width: 640px) {
       padding: 5.6rem 0 2.4rem;
-
       > #search {
         margin: 0 auto;
       }
       > button {
         background-color: transparent;
       }
-      > button:last-of-type {
+
+      > button#receipt {
         position: relative;
 
         > span {
@@ -94,8 +94,8 @@ export const Container = styled.header`
       }
 
       > #search,
-      > svg,
-      button:nth-child(4) {
+      > #logout,
+      > #redBtn {
         display: none;
       }
     }
@@ -104,16 +104,16 @@ export const Container = styled.header`
       gap: clamp(1.5rem, -5.3rem + 10.625vw, 3.2rem);
       padding-block: 2.4rem;
 
-      > button:first-child,
-      > button:last-of-type {
-        display: none;
+      > #menuBurgue,
+      > button#receipt {
+        display: none !important;
       }
 
-      > div > h1 {
+      > #logo > h1 {
         font-size: clamp(1.6rem, -0.4571rem + 2.8571vw, 2.4rem);
       }
 
-      > button {
+      > button#redBtn {
         max-width: 216px;
         flex: 1;
 
@@ -129,7 +129,7 @@ export const Container = styled.header`
       }
 
       @media (max-width: 711px) {
-        > div > h1 {
+        > #logo > h1 {
           display: none;
         }
       }
@@ -146,7 +146,7 @@ export const Container = styled.header`
     -webkit-animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94)
       both;
     animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    
+
     > div {
       margin-bottom: 3.6rem;
     }
