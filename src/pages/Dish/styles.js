@@ -4,6 +4,7 @@ export const Container = styled.div`
   min-height: 100vh;
   > header {
     position: sticky;
+    z-index: 2;
     top: 0;
   }
   display: grid;
