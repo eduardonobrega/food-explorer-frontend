@@ -11,7 +11,7 @@ import { AddIngredients } from '../../components/AddIngredients';
 export function Edit() {
   return (
     <Container>
-      <Header />
+      <Header isAdmin/>
       <LinkText name="voltar" icon={FiChevronLeft} />
       <main>
         <Form>
