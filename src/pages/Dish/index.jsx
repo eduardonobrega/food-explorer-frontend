@@ -9,8 +9,7 @@ import { Ingredient } from '../../components/Ingredient';
 import { Counter } from '../../components/Counter';
 import { Button } from '../../components/Button';
 
-import ravanello300 from '../../assets/ravanello-300.png';
-import ravanello400 from '../../assets/ravanello-400.png';
+import ravanello from '../../assets/ravanello.png';
 import receipt from '../../assets/icons/receipt.svg';
 
 export function Dish({ isAdmin = false }) {
@@ -22,14 +21,9 @@ export function Dish({ isAdmin = false }) {
 
       <main>
         <Content isAdmin={isAdmin}>
-          <picture>
-            <source
-              media="(max-width: 640px)"
-              srcSet={ravanello300}
-              type="image/png"
-            />
-            <img src={ravanello400} alt="" />
-          </picture>
+          
+          <img src={ravanello} alt="" />
+          
 
           <div>
             <h2>Salada Ravanello</h2>
