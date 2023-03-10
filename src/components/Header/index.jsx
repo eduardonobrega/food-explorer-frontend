@@ -16,6 +16,7 @@ import { Container } from './styles';
 export function Header({ isAdmin = false }) {
   const [showMenu, setShowMenu] = useState(false);
 
+
   function handleModal() {
     setShowMenu((prevState) => !prevState);
   }
@@ -37,11 +38,12 @@ export function Header({ isAdmin = false }) {
     <Container isAdmin={isAdmin}>
       <header>
         <button id="menuBurgue">
-          <img
-            src={showMenu ? close : menu}
-            alt="menu hambúrguer"
-            onClick={handleModal}
-          />
+          {!showMenu && (
+            <img src={menu} alt="menu hambúrguer" onClick={handleModal} />
+          )}
+          {showMenu && (
+            <img src={close} alt="menu close" onClick={handleModal} />
+          )}
         </button>
         {!showMenu && (
           <>
