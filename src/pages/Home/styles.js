@@ -28,15 +28,16 @@ export const Container = styled.div`
       border-radius: 3px;
 
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
 
       position: relative;
-
-      > picture > img {
+      > picture {
         position: absolute;
         top: -3rem;
         left: -3rem;
         bottom: 0;
+      }
+      > picture > img {
       }
 
       padding-right: clamp(0rem, -5.5556rem + 13.8889vw, 10rem);
@@ -77,16 +78,30 @@ export const Container = styled.div`
     grid-template-rows: 9.3rem auto 7.7rem;
 
     > main {
-      padding-top: 16rem;
+      padding-top: clamp(6rem, -7.8595rem + 21.6216vw, 16.4rem);
+
       > div:first-child {
         height: 26rem;
-
+        justify-content: space-between;
         > picture {
-          background-color: red;
-          > img {
-            position: relative;
-            bottom: 0;
-           
+          position: static;
+          overflow: hidden;
+          margin-top: -13%;
+          margin-left: -5%;
+          width: 58%;
+        }
+        > div {
+          width: 50%;
+          padding-top: 8.8rem;
+          > h2 {
+            font-size: clamp(1.8rem, -1.1318rem + 4.5738vw, 4rem);
+            margin-bottom: clamp(0.3rem, -0.3663rem + 1.0395vw, 0.8rem);
+            line-height: clamp(2.5rem, -1.6312rem + 6.4449vw, 5.6rem);
+          }
+
+          > p {
+            font-size: clamp(1.2rem, 0.6669rem + 0.8316vw, 1.6rem);
+            line-height: 1.7rem;
           }
         }
       }
