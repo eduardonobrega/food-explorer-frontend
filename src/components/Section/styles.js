@@ -1,8 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.section`
-  width: min(89vw, 1122px);
-  margin: 0 auto;
+  /* width: min(100vw, 1122px); */
+  max-width: 94.5vw;
+
   > h2 {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
@@ -12,11 +13,29 @@ export const Container = styled.section`
   }
 
   .carousel {
-    gap: 2.7rem;
-    overflow: auto;
-    display: flex;
-    > div {
-      flex-shrink: 0;
-    }
+    cursor: grab;
+    overflow: hidden;
   }
+
+  .inner {
+    display: flex;
+    gap: 1.6rem;
+  }
+
+  /* .item {
+    min-height: 200px;
+    min-width: 400px;
+    padding: 14px;
+  }
+
+  .item:last-child {
+    margin-right: 6rem;
+  }
+
+  .item img {
+    width: 100%;
+    height: 90%;
+    border-radius: 12px;
+    pointer-events: none;
+  } */
 `;

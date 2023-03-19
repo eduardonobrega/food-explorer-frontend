@@ -1,12 +1,39 @@
-import { Container } from "./styles";
+import { useEffect, useRef, useState } from 'react';
+import { Container } from './styles';
 
-export function Section({title, children}) {
-  return(
+import { motion } from 'framer-motion';
+
+
+
+export function Section({title, cards}) {
+  const carousel = useRef();
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
+  }, []);
+
+  return (
     <Container>
       <h2>{title}</h2>
-      <div className="carousel">
-        {children}
-      </div>
+
+      <motion.div
+        ref={carousel}
+        className="carousel"
+        whileTap={{ cursor: 'grabbing' }}
+      >
+        <motion.div
+          className="inner"
+          drag="x"
+          dragConstraints={{ right: 0, left: -width }}
+        >
+          {cards.map((card, index) => (
+            <motion.div key={String(index)} className="item">
+              {card}
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
     </Container>
-  )
+  );
 }
