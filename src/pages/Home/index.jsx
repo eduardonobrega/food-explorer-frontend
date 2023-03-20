@@ -62,6 +62,33 @@ export function Home() {
                 price: '25,97',
               }}
             />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
           ]}
         ></Section>
       </main>

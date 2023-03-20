@@ -8,15 +8,24 @@ import 'swiper/css/navigation';
 import { Container } from './styles';
 
 export function Section({ title, cards }) {
+  const settings = {
+    modules: [Navigation],
+    navigation: true,
+    spaceBetween: 16,
+    slidesPerView: 'auto',
+    breakpoints: {
+      641: {
+        spaceBetween: 27,
+        grabCursor: true,
+      },
+    },
+  };
   return (
     <Container>
       <h2>{title}</h2>
 
       <Swiper
-        modules={[Navigation]}
-        // navigation={true}
-        spaceBetween={16}
-        slidesPerView={'auto'}
+        {...settings}
       >
         {cards.map((card, index) => (
           <SwiperSlide key={String(index)}>{card}</SwiperSlide>
