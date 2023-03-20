@@ -1,4 +1,5 @@
 import { FiChevronLeft } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 import { Container, Content } from './styles';
 
@@ -12,18 +13,17 @@ import { Button } from '../../components/Button';
 import ravanello from '../../assets/ravanello.png';
 import receipt from '../../assets/icons/receipt.svg';
 
-export function Dish({ isAdmin = false }) {
+export function Dish() {
+  const isAdmin = false;
   return (
     <Container>
       <Header />
-      
-      <LinkText name="voltar" icon={FiChevronLeft} />
+
+      <LinkText name="voltar" icon={FiChevronLeft} to={-1} />
 
       <main>
         <Content isAdmin={isAdmin}>
-          
           <img src={ravanello} alt="" />
-          
 
           <div>
             <h2>Salada Ravanello</h2>
@@ -43,10 +43,12 @@ export function Dish({ isAdmin = false }) {
 
             <div>
               {!isAdmin && <Counter quantity="05" />}
-              <Button
-                title={isAdmin ? 'Editar prato' : 'pedir ∙ R$ 25,00'}
-                icon={isAdmin ? undefined : receipt}
-              />
+              <Link to={isAdmin ? `/edit/1` : ''}>
+                <Button
+                  title={isAdmin ? 'Editar prato' : 'pedir ∙ R$ 25,00'}
+                  icon={isAdmin ? undefined : receipt}
+                />
+              </Link>
             </div>
           </div>
         </Content>
