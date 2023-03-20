@@ -109,8 +109,18 @@ export const Container = styled.header`
         display: none !important;
       }
 
-      > #logo > h1 {
-        font-size: clamp(1.6rem, -0.4571rem + 2.8571vw, 2.4rem);
+      > #logo {
+        display: grid;
+        grid-template-columns: 2.6rem 1fr;
+        row-gap: 0;
+        > h1 {
+          font-size: clamp(1.6rem, -0.4571rem + 2.8571vw, 2.4rem);
+        }
+        > span {
+          margin-top: -3px;
+          grid-column-start: 2;
+          justify-self: end;
+        }
       }
 
       > button#redBtn {
@@ -135,8 +145,4 @@ export const Container = styled.header`
       }
     }
   }
-
-  
-
-  
 `;
