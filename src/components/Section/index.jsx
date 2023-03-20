@@ -1,39 +1,27 @@
-import { useEffect, useRef, useState } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation } from 'swiper';
+
+import 'swiper/css';
+import 'swiper/css/bundle';
+import 'swiper/css/navigation';
+
 import { Container } from './styles';
 
-import { motion } from 'framer-motion';
-
-
-
-export function Section({title, cards}) {
-  const carousel = useRef();
-  const [width, setWidth] = useState(0);
-
-  useEffect(() => {
-    setWidth(carousel.current?.scrollWidth - carousel.current?.offsetWidth);
-  }, []);
-
+export function Section({ title, cards }) {
   return (
     <Container>
       <h2>{title}</h2>
 
-      <motion.div
-        ref={carousel}
-        className="carousel"
-        whileTap={{ cursor: 'grabbing' }}
+      <Swiper
+        modules={[Navigation]}
+        // navigation={true}
+        spaceBetween={16}
+        slidesPerView={'auto'}
       >
-        <motion.div
-          className="inner"
-          drag="x"
-          dragConstraints={{ right: 0, left: -width }}
-        >
-          {cards.map((card, index) => (
-            <motion.div key={String(index)} className="item">
-              {card}
-            </motion.div>
-          ))}
-        </motion.div>
-      </motion.div>
+        {cards.map((card, index) => (
+          <SwiperSlide key={String(index)}>{card}</SwiperSlide>
+        ))}
+      </Swiper>
     </Container>
   );
 }

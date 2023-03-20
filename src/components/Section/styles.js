@@ -12,30 +12,18 @@ export const Container = styled.section`
     margin-bottom: 2.4rem;
   }
 
-  .carousel {
-    cursor: grab;
-    overflow: hidden;
+  .swiper {
+    /* background-color: red; */
   }
 
-  .inner {
-    display: flex;
-    gap: 1.6rem;
+  .swiper-wrapper {
+    /* background-color: blue; */
+    justify-content: start;
+    align-items: center;
   }
-
-  /* .item {
-    min-height: 200px;
-    min-width: 400px;
-    padding: 14px;
+  .swiper-slide {
+    /* background-color: yellow; */
+    width: fit-content;
+    
   }
-
-  .item:last-child {
-    margin-right: 6rem;
-  }
-
-  .item img {
-    width: 100%;
-    height: 90%;
-    border-radius: 12px;
-    pointer-events: none;
-  } */
 `;
