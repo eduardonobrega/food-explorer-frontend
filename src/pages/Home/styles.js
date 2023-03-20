@@ -34,6 +34,7 @@ export const Container = styled.div`
     grid-template-rows: 9.3rem clamp(16.4rem, -18.2486rem + 54.0541vw, 42.4rem) auto 7.7rem;
     > main {
       padding-left: 0;
+      gap: 4.8rem;
     }
   }
 `;

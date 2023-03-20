@@ -24,7 +24,145 @@ export function Home() {
       </Banner>
       <main>
         <Section
-          title="Pratos principais"
+          title="Refeições"
+          cards={[
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+          ]}
+        ></Section>
+
+        <Section
+          title="Sobremesas"
+          cards={[
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+            <Card
+              dish={{
+                image: 'https://github.com/eduardonobrega.png',
+                name: 'Torradas de Parma',
+                description:
+                  'Presunto de parma e rúcula em  um pão com fermentação natural.',
+                price: '25,97',
+              }}
+            />,
+          ]}
+        ></Section>
+        
+        <Section
+          title="Bebidas"
           cards={[
             <Card
               dish={{
