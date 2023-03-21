@@ -46,7 +46,6 @@ export const Container = styled.header`
     > h2 {
       margin-left: 1.6rem;
       font-size: 2.1rem;
-      background-color: blue;
     }
 
     > #logo {
@@ -100,14 +99,17 @@ export const Container = styled.header`
 
       > #search,
       > #logout,
+      > #new,
       #redBtn,
-      >#new {
+      #historic,
+      #fav {
         display: none;
       }
     }
+    
 
     @media (min-width: 641px) {
-      gap: clamp(1.5rem, -5.3rem + 10.625vw, 3.2rem);
+      gap: clamp(1.5rem, -0.7573rem + 3.527vw, 3.2rem);
       padding-block: 2.4rem;
 
       > #menuBurgue,
@@ -118,6 +120,11 @@ export const Container = styled.header`
         flex-shrink: 0;
       }
 
+      > #buttons {
+        display: flex;
+        gap: clamp(1rem, -1.9212rem + 4.5643vw, 3.2rem);
+        min-width: 14.5rem;
+      }
       #new {
         flex-shrink: 0;
       }
@@ -140,7 +147,7 @@ export const Container = styled.header`
         max-width: 216px;
         > button#redBtn {
           padding-inline: 0;
-          min-width: 12rem;
+          min-width: ${({ isAdmin }) => (isAdmin ? '12rem' : '7rem')};
           > img {
             width: 2rem;
           }
@@ -159,6 +166,14 @@ export const Container = styled.header`
         > h1 {
           display: none;
         }
+      }
+    }
+
+    @media (max-width: 1028px) {
+      #buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.3rem;
       }
     }
   }

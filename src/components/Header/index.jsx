@@ -18,7 +18,7 @@ import { LinkText } from '../LinkText';
 export function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
-  const isAdmin = false;
+  const isAdmin = true;
   let scrollTop;
   let scrollLeft;
   function disableScroll() {
@@ -94,13 +94,19 @@ export function Header() {
               />
             </div>
 
+            {!isAdmin && (
+              <div id='buttons'>
+                <LinkText name="Histórico de pedidos" to="" id="historic" />
+                <LinkText name="Meus favoritos" to="" id="fav" />
+              </div>
+            )}
             {isAdmin && <LinkText name="Novo prato" to="/new" id="new" />}
 
             <Link to="" id="receiptDesktop">
               <Button
                 id="redBtn"
-                title={isAdmin ? `Pedidos (${0})` : `Pedidos (${0})`}
-                icon={isAdmin ? IoReceiptOutline : ''}
+                title={isAdmin ? `Pedidos (${0})` : `(${0})`}
+                icon={isAdmin ? IoReceiptOutline : FiShoppingCart}
               />
             </Link>
 

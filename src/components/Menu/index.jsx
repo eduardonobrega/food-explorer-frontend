@@ -23,9 +23,20 @@ export function Menu({ show }) {
         <ul>
           {isAdmin && (
             <li>
-              <LinkText name="Novo prato" />
+              <LinkText name="Novo prato" to="/new"/>
             </li>
           )}
+          {!isAdmin && (
+            <li>
+              <LinkText name="Histórico de pedidos" to="" />
+            </li>
+          )}
+          {!isAdmin && (
+            <li>
+              <LinkText name="Meus favoritos" to="" />
+            </li>
+          )}
+
           <li>
             <LinkText name="Sair" />
           </li>
