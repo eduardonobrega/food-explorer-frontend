@@ -64,7 +64,7 @@ export const Container = styled.header`
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       padding: 5.6rem 0 2.4rem;
       > #search {
         margin: 0 auto;
@@ -75,7 +75,10 @@ export const Container = styled.header`
 
       > button#receipt {
         position: relative;
-
+        > svg {
+          color: ${({theme}) => theme.LIGHT[100]};
+          font-size: 3rem;
+        }
         > span {
           color: ${({ theme }) => theme.LIGHT[100]};
           background-color: ${({ theme }) => theme.TINTS.TOMATO[200]};
@@ -108,10 +111,9 @@ export const Container = styled.header`
     }
     
 
-    @media (min-width: 641px) {
-      gap: clamp(1.5rem, -0.7573rem + 3.527vw, 3.2rem);
+    @media (min-width: 769px) {
+      gap: clamp(1.5rem, -0.7573rem + 3.527vw, 3.2rem); // mudar
       padding-block: 2.4rem;
-
       > #menuBurgue,
       > button#receipt {
         display: none !important;
@@ -122,7 +124,7 @@ export const Container = styled.header`
 
       > #buttons {
         display: flex;
-        gap: clamp(1rem, -1.9212rem + 4.5643vw, 3.2rem);
+        gap: clamp(1rem, -1.9212rem + 4.5643vw, 3.2rem); // mudar
         min-width: 14.5rem;
       }
       #new {
@@ -134,7 +136,7 @@ export const Container = styled.header`
         grid-template-columns: 2.6rem max-content;
         row-gap: 0;
         > h1 {
-          font-size: clamp(1.6rem, -0.4571rem + 2.8571vw, 2.4rem);
+          font-size: clamp(1.6rem, -0.4571rem + 2.8571vw, 2.4rem); // mudar
         }
         > span {
           margin-top: -3px;
@@ -148,19 +150,16 @@ export const Container = styled.header`
         > button#redBtn {
           padding-inline: 0;
           min-width: ${({ isAdmin }) => (isAdmin ? '12rem' : '7rem')};
-          > img {
-            width: 2rem;
-          }
         }
       }
 
       > svg {
-        width: clamp(2.5rem, -0.3rem + 4.375vw, 3.2rem);
-        height: clamp(2.5rem, -0.3rem + 4.375vw, 3.2rem);
+        width: clamp(2.5rem, -0.3rem + 4.375vw, 3.2rem); // mudar 
+        height: clamp(2.5rem, -0.3rem + 4.375vw, 3.2rem); // mudar
         cursor: pointer;
       }
     }
-    @media (min-width: 641px) and (max-width: 810px) {
+    @media (min-width: 769px) and (max-width: 810px) {
       > #logo {
         max-width: 8rem;
         > h1 {

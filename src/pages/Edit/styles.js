@@ -30,7 +30,7 @@ export const Container = styled.div`
     padding-bottom: 3.2rem;
   }
 
-  @media (min-width: 641px) {
+  @media (min-width: 769px) {
     grid-template-rows: 9.3rem 9rem auto 7.7rem;
     > a {
       align-self: start;
@@ -222,7 +222,7 @@ export const Form = styled.form`
     }
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 769px) {
     > div:last-child {
       align-self: flex-end;
       > #buttonAdd {

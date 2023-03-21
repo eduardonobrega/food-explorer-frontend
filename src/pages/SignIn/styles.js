@@ -19,7 +19,7 @@ export const Container = styled.div`
     gap: 2rem;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 769px) {
     padding: 0 7vw;
     display: flex;
     justify-content: space-between;
@@ -37,7 +37,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     padding-top: 16vh;
   }
 
@@ -105,10 +105,12 @@ export const Form = styled.form`
   width: 100%;
   flex-direction: column;
   gap: 3.2rem;
-
+  max-width: 50rem;
   -webkit-animation: bounce-in-bottom 1.1s both;
   animation: bounce-in-bottom 1.1s both;
-
+  > a {
+    margin: 0 auto;
+  }
   > h2 {
     display: none;
   }
@@ -122,7 +124,7 @@ export const Form = styled.form`
     animation: jello-horizontal 0.9s both;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 769px) {
     width: min(95%, 476px);
 
     background-color: ${({ theme }) => theme.DARK[700]};
@@ -131,7 +133,7 @@ export const Form = styled.form`
     -webkit-animation: tilt-in-tr 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94)
       both;
     animation: tilt-in-tr 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-
+    
     h2 {
       display: block;
       text-align: center;

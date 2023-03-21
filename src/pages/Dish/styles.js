@@ -29,7 +29,7 @@ export const Container = styled.div`
     grid-area: main;
   }
 
-  @media (min-width: 641px) {
+  @media (min-width: 769px) {
     grid-template-rows: 9.3rem 9rem auto 7.7rem;
     > a {
       align-self: start;
@@ -59,12 +59,12 @@ export const Content = styled.div`
     }
     > h2 {
       font-weight: 500;
-      font-size: clamp(2.7rem, 1.4rem + 4.0625vw, 4rem);
+      font-size: clamp(2.7rem, 1.7714rem + 2.9018vw, 4rem);
       margin-top: 1.6rem;
     }
 
     > p {
-      font-size: clamp(1.6rem, 1.0667rem + 1.6667vw, 2.4rem);
+      font-size: clamp(1.6rem, 1.219rem + 1.1905vw, 2.4rem);
       line-height: 2.2rem;
       max-width: 29ch;
       margin: 0 auto;
@@ -88,10 +88,10 @@ export const Content = styled.div`
       display: grid;
       justify-items: center;
       grid-template-columns: ${({ isAdmin }) => (isAdmin ? '1fr' : '1fr 2fr')};
-      gap: clamp(1rem, -8.2723rem + 14.4654vw, 3.3rem);
+      gap: clamp(1rem, -93.5421rem + 121.0526vw, 3.3rem);
 
       margin-top: 2rem;
-      
+
       > a {
         width: 100%;
       }
@@ -138,7 +138,7 @@ export const Content = styled.div`
         }
       }
 
-      > div >a > button {
+      > div > a > button {
         padding-inline: ${({ isAdmin }) => (isAdmin ? '2.4rem' : '0')};
       }
     }
