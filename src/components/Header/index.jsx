@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { FiSearch, FiLogOut } from 'react-icons/fi';
+import { FiSearch, FiLogOut, FiShoppingCart } from 'react-icons/fi';
+import { IoReceiptOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 
 import { Input } from '../Input';
@@ -12,11 +13,27 @@ import explorer from '../../assets/icons/explorer.svg';
 import receipt from '../../assets/icons/receipt.svg';
 
 import { Container } from './styles';
+import { LinkText } from '../LinkText';
 
 export function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
-  const isAdmin = true;
+  const isAdmin = false;
+  let scrollTop;
+  let scrollLeft;
+  function disableScroll() {
+    // Get the current page scroll position
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    (scrollLeft = window.pageXOffset || document.documentElement.scrollLeft),
+      // if any scroll is attempted, set this to the previous value
+      (window.onscroll = function () {
+        window.scrollTo(scrollLeft, scrollTop);
+      });
+  }
+
+  function enableScroll() {
+    window.onscroll = function () {};
+  }
 
   function handleModal() {
     setShowMenu((prevState) => !prevState);
@@ -26,6 +43,7 @@ export function Header() {
     function handleResize() {
       if (window.innerWidth > 640) {
         setShowMenu(false);
+        enableScroll();
       }
     }
 
@@ -40,10 +58,24 @@ export function Header() {
       <header>
         <button id="menuBurgue">
           {!showMenu && (
-            <img src={menu} alt="menu hambúrguer" onClick={handleModal} />
+            <img
+              src={menu}
+              alt="menu hambúrguer"
+              onClick={() => {
+                handleModal();
+                disableScroll();
+              }}
+            />
           )}
           {showMenu && (
-            <img src={close} alt="menu close" onClick={handleModal} />
+            <img
+              src={close}
+              alt="menu close"
+              onClick={() => {
+                handleModal();
+                enableScroll();
+              }}
+            />
           )}
         </button>
         {!showMenu && (
@@ -62,11 +94,13 @@ export function Header() {
               />
             </div>
 
-            <Link to={isAdmin ? '/new':''}>
+            {isAdmin && <LinkText name="Novo prato" to="/new" id="new" />}
+
+            <Link to="" id="receiptDesktop">
               <Button
                 id="redBtn"
-                title={isAdmin ? 'Novo prato' : `Pedidos (${0})`}
-                icon={isAdmin ? '' : receipt}
+                title={isAdmin ? `Pedidos (${0})` : `Pedidos (${0})`}
+                icon={isAdmin ? IoReceiptOutline : ''}
               />
             </Link>
 

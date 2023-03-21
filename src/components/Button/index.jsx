@@ -1,10 +1,10 @@
 import { Container } from './styles';
 
-export function Button({ icon, title, ...rest }) {
+export function Button({ icon: Icon, title, ...rest }) {
   return (
-    <Container  {...rest}>
-        {icon && <img src={icon} alt="" />}
-        {title}
+    <Container {...rest}>
+      {Icon && <Icon />}
+      {title}
     </Container>
   );
 }

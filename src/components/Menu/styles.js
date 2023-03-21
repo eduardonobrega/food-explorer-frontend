@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.div`
   position: sticky;
   background-color: ${({ theme }) => theme.DARK[400]};
+  height: 100vh;
   display: none;
 
   &.menu.show {

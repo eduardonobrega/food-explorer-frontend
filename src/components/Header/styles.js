@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const Container = styled.header`
   grid-area: header;
-
   background-color: ${({ theme }) => theme.DARK[700]};
   color: ${({ theme }) => theme.LIGHT[100]};
 
@@ -19,6 +18,10 @@ export const Container = styled.header`
     align-items: center;
     flex: 2;
     padding-left: 1.2rem;
+
+    > svg {
+      min-width: 1.54rem;
+    }
 
     > div {
       width: 100%;
@@ -97,7 +100,8 @@ export const Container = styled.header`
 
       > #search,
       > #logout,
-      #redBtn {
+      #redBtn,
+      >#new {
         display: none;
       }
     }
@@ -109,6 +113,13 @@ export const Container = styled.header`
       > #menuBurgue,
       > button#receipt {
         display: none !important;
+      }
+      > #logout {
+        flex-shrink: 0;
+      }
+
+      #new {
+        flex-shrink: 0;
       }
 
       > #logo {
@@ -124,10 +135,12 @@ export const Container = styled.header`
           justify-self: end;
         }
       }
-      > a {
+      > a#receiptDesktop {
         flex: 1;
         max-width: 216px;
         > button#redBtn {
+          padding-inline: 0;
+          min-width: 12rem;
           > img {
             width: 2rem;
           }
@@ -140,7 +153,7 @@ export const Container = styled.header`
         cursor: pointer;
       }
     }
-    @media (min-width: 641px) and (max-width: 711px) {
+    @media (min-width: 641px) and (max-width: 810px) {
       > #logo {
         max-width: 8rem;
         > h1 {
