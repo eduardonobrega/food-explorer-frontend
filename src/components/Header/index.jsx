@@ -17,7 +17,7 @@ import { LinkText } from '../LinkText';
 export function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
-  const isAdmin = true;
+  const isAdmin = false;
   let scrollTop;
   let scrollLeft;
   function disableScroll() {
@@ -102,7 +102,7 @@ export function Header() {
             )}
             {isAdmin && <LinkText name="Novo prato" to="/new" id="new" />}
 
-            <Link to="" id="receiptDesktop">
+            <Link to={isAdmin ? '':'/payment'} id="receiptDesktop">
               <Button
                 id="redBtn"
                 title={isAdmin ? `Pedidos (${0})` : `(${0})`}

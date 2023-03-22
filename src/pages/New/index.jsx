@@ -12,7 +12,11 @@ export function New() {
   return (
     <Container>
       <Header />
-      <LinkText name="voltar" icon={FiChevronLeft} to={-1} />
+      
+      <div className="wrapper">
+        <LinkText name="voltar" icon={FiChevronLeft} to={-1} />
+      </div>
+
       <main>
         <Form>
           <h1>Novo prato</h1>

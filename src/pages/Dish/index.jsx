@@ -20,7 +20,9 @@ export function Dish() {
     <Container>
       <Header />
 
-      <LinkText name="voltar" icon={FiChevronLeft} to={-1} />
+      <div className="wrapper">
+        <LinkText name="voltar" icon={FiChevronLeft} to={-1} />
+      </div>
 
       <main>
         <Content isAdmin={isAdmin}>
