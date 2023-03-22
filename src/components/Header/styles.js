@@ -73,7 +73,8 @@ export const Container = styled.header`
         background-color: transparent;
       }
 
-      > button#receipt {
+      #receipt {
+        background-color: transparent;
         position: relative;
         > svg {
           color: ${({theme}) => theme.LIGHT[100]};
@@ -115,7 +116,7 @@ export const Container = styled.header`
       gap: clamp(1.5rem, -0.7573rem + 3.527vw, 3.2rem); // mudar
       padding-block: 2.4rem;
       > #menuBurgue,
-      > button#receipt {
+      > a:has(#receipt) {
         display: none !important;
       }
       > #logout {

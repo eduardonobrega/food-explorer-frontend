@@ -16,7 +16,7 @@ export const Container = styled.div`
   grid-template-rows: 11.4rem auto 7.7rem;
 
   > main {
-    width: min(75%, 1122px);
+    width: min(90%, 1122px);
     margin: 0 auto;
   }
 
@@ -32,13 +32,13 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  
+
   padding: 3.2rem 0;
 
   h1 {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
-    font-size: 3.2rem;
+    font-size: clamp(2.4rem, 1.8286rem + 1.7857vw, 3.2rem);
     line-height: 4.5rem;
 
     margin-bottom: 3.2rem;
@@ -71,20 +71,20 @@ export const Content = styled.div`
     }
   }
 
-  > #payment {
+  > section#payment {
     display: none;
   }
 
-
-  @media only screen and (min-width: 769px) {
-    flex-direction: row;
+  @media only screen and (min-width: 992px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
     > a {
       display: none;
     }
-    
-    #payment {
+
+    section#payment {
       display: block;
     }
-  } 
+  }
 `;

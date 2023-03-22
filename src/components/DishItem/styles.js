@@ -57,6 +57,7 @@ export const Container = styled.div`
         > small {
           font-size: 1rem;
         }
+        
       }
 
       > button {

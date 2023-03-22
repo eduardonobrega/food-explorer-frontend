@@ -4,6 +4,7 @@ import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { DishItem } from '../../components/DishItem';
 import { Button } from '../../components/Button';
+import { PaymentItem } from '../../components/PaymentItem';
 
 import { Container, Content } from './styles';
 import ravanello from '../../assets/ravanello.png';
@@ -58,12 +59,13 @@ export function Payment() {
             <p>Total: R$ 103,88</p>
           </section>
 
-          <Link>
+          <Link to="/payment-only">
             <Button title="Avançar" />
           </Link>
           
           <section id='payment'>
             <h1>Pagamento</h1>
+            <PaymentItem/>
           </section>
         </Content>
       </main>

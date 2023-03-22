@@ -102,7 +102,7 @@ export function Header() {
             )}
             {isAdmin && <LinkText name="Novo prato" to="/new" id="new" />}
 
-            <Link to={isAdmin ? '':'/payment'} id="receiptDesktop">
+            <Link to={isAdmin ? '' : '/payment'} id="receiptDesktop">
               <Button
                 id="redBtn"
                 title={isAdmin ? `Pedidos (${0})` : `(${0})`}
@@ -112,11 +112,13 @@ export function Header() {
 
             <FiLogOut id="logout" />
 
-            <button id="receipt">
-              {isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
+            <Link to={isAdmin ? '' : '/payment'}>
+              <button id="receipt">
+                {isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
 
-              <span>0</span>
-            </button>
+                <span>0</span>
+              </button>
+            </Link>
           </>
         )}
 
