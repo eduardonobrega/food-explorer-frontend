@@ -97,7 +97,7 @@ export function Header() {
             {!isAdmin && (
               <div id="buttons">
                 <LinkText name="Histórico de pedidos" to="" id="historic" />
-                <LinkText name="Meus favoritos" to="" id="fav" />
+                <LinkText name="Meus favoritos" to="/favorites" id="fav" />
               </div>
             )}
             {isAdmin && <LinkText name="Novo prato" to="/new" id="new" />}

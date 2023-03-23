@@ -23,7 +23,7 @@ export function Menu({ show }) {
         <ul>
           {isAdmin && (
             <li>
-              <LinkText name="Novo prato" to="/new"/>
+              <LinkText name="Novo prato" to="/new" />
             </li>
           )}
           {!isAdmin && (
@@ -33,7 +33,7 @@ export function Menu({ show }) {
           )}
           {!isAdmin && (
             <li>
-              <LinkText name="Meus favoritos" to="" />
+              <LinkText name="Meus favoritos" to="/favorites" />
             </li>
           )}
 
