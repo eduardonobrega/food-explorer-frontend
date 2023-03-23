@@ -28,7 +28,7 @@ export function Menu({ show }) {
           )}
           {!isAdmin && (
             <li>
-              <LinkText name="Histórico de pedidos" to="" />
+              <LinkText name="Histórico de pedidos" to="/requests" />
             </li>
           )}
           {!isAdmin && (
