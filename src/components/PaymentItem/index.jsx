@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { IoReceiptOutline } from 'react-icons/io5';
 import { Container } from './styles';
 
@@ -13,8 +13,37 @@ import clock from '../../assets/clock.svg';
 
 export function PaymentItem() {
   const [pixSelected, setPixSelected] = useState(true);
-
   const [purchase, setPurchase] = useState('initial'); // 'initial await pay delivered';
+  const [pixCode, setPixCode] = useState('');
+  const inputCopy = useRef();
+
+  function copyText(e) {
+    inputCopy.current.select();
+    inputCopy.current.setSelectionRange(0, 99999);
+
+    const text = inputCopy.current.value;
+    if (!navigator.clipboard) {
+      document.execCommand('copy');
+    } else {
+      navigator.clipboard.writeText(text);
+    }
+  }
+
+  useEffect(() => {
+    const randomPixCode = (len) => {
+      let code = '';
+
+      do {
+        code += Math.random().toString(36).slice(2);
+      } while (code.length < len);
+
+      code = code.slice(0, len);
+
+      return code;
+    };
+
+    setPixCode(randomPixCode(30));
+  }, []);
 
   return (
     <Container>
@@ -38,14 +67,24 @@ export function PaymentItem() {
 
       <div className="payment">
         {pixSelected && purchase == 'initial' && (
-          <img src={qrCode} alt="Qr-code" />
+          <>
+            <img src={qrCode} alt="Qr-code" />
+            <div className="copy-wrapper">
+              <input type="text" readOnly value={pixCode} ref={inputCopy} />
+              <button onClick={copyText}>copy</button>
+            </div>
+          </>
         )}
 
         {!pixSelected && purchase == 'initial' && (
           <form action="">
             <div className="input-wrapper">
               <label htmlFor="card">Número do Cartão</label>
-              <input type="number" id="card" placeholder="0000 0000 0000 0000" />
+              <input
+                type="number"
+                id="card"
+                placeholder="0000 0000 0000 0000"
+              />
             </div>
 
             <div id="twoColumns">
@@ -69,7 +108,7 @@ export function PaymentItem() {
         )}
 
         {purchase != 'initial' && (
-          <div id='state'>
+          <div id="state">
             {purchase == 'await' && (
               <>
                 <img src={clock} alt="ícone de um relógio" />
