@@ -25,13 +25,15 @@ const dot = (color = 'transparent') => ({
 });
 
 const colourStyles = {
-  control: (styles, state) => ({
+  control: (styles, { isDisabled }) => ({
     display: 'flex',
-    height: '4.8rem',
+    height: isDisabled ? '' : '4.8rem',
     color: '#C4C4CC',
-    backgroundColor: '#0D1D25',
+    // backgroundColor: '#0D1D25',
+    backgroundColor: isDisabled ? 'transparent' : '#0D1D25',
     borderRadius: '5px',
     border: 'none',
+    minWidth: isDisabled ? '' : 155,
   }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
     const color = chroma(data.color);
@@ -72,9 +74,9 @@ const colourStyles = {
   indicatorSeparator: () => ({
     display: 'none',
   }),
-  indicatorsContainer: (styles, state) => ({
+  indicatorsContainer: (styles, { isDisabled }) => ({
     ...styles,
-    color: 'red',
+    display: isDisabled ? 'none' : 'flex',
   }),
   menu: (styles, state) => ({
     ...styles,
@@ -82,14 +84,15 @@ const colourStyles = {
   }),
 };
 
-export function SelectStatus() {
+export function SelectStatus({ isDisabled = false, className }) {
   return (
-    <Container>
+    <Container className={className}>
       <Select
         options={options}
         isSearchable={false}
         defaultValue={options[0]}
         styles={colourStyles}
+        isDisabled={isDisabled}
       />
     </Container>
   );
