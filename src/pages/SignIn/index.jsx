@@ -2,9 +2,14 @@ import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { LinkText } from '../../components/LinkText';
 
+import { useAuth } from '../../hooks/auth';
+
 import { Container, Form } from './styles';
 
 export function SignIn() {
+  const data = useAuth();
+
+  console.log(data);
   return (
     <Container>
       <h1>
@@ -42,7 +47,7 @@ export function SignIn() {
           required
         />
         <Button title="Entrar" />
-        <LinkText name="Criar uma conta" to="/register"/>
+        <LinkText name="Criar uma conta" to="/register" />
       </Form>
     </Container>
   );
