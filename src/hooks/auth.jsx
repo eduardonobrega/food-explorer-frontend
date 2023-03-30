@@ -10,21 +10,16 @@ function AuthProvider({ children }) {
   async function signIn({ email, password }) {
     try {
       const response = await api.post('/sessions', { email, password });
-
       const { user, token } = response.data;
-
-      api.defaults.headers.common['Authorization'] = token;
 
       user.isAdmin = user.isAdmin === 1;
 
       localStorage.setItem('@foodexplorer:user', JSON.stringify(user));
       localStorage.setItem('@foodexplorer:token', token);
 
-      setData({
-        user,
-        token,
-      });
-
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      
+      setData({ user, token });
     } catch (error) {
       if (error.response) {
         alert(error.response.data.message);
@@ -46,6 +41,9 @@ function AuthProvider({ children }) {
     const token = localStorage.getItem('@foodexplorer:token');
 
     if (user && token) {
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+
+
       setData({
         user: JSON.parse(user),
         token,

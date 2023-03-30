@@ -26,7 +26,7 @@ export function Card({ dish, favorite = false }) {
         </button>
       )}
 
-      <Link to="/dish/2">
+      <Link to="/dish/1">
         <img src={dish.image} alt={dish.name} />
         <h3>{dish.name} &gt;</h3>
         <p>{dish.description}</p>

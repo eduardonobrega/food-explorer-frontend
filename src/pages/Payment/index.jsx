@@ -7,7 +7,7 @@ import { Button } from '../../components/Button';
 import { PaymentItem } from '../../components/PaymentItem';
 
 import { Container, Content } from './styles';
-import ravanello from '../../assets/ravanello.png';
+import photoPlaceholder from '../../assets/photoPlaceholder.png';
 
 export function Payment() {
   return (
@@ -20,7 +20,7 @@ export function Payment() {
             <ul>
               <li>
                 <DishItem
-                  img={ravanello}
+                  img={photoPlaceholder}
                   quantity={1}
                   name={`Salada Radish`}
                   amount={25.97}
@@ -29,7 +29,7 @@ export function Payment() {
               </li>
               <li>
                 <DishItem
-                  img={ravanello}
+                  img={photoPlaceholder}
                   quantity={1}
                   name={`Salada Radish`}
                   amount={25.97}
@@ -38,7 +38,7 @@ export function Payment() {
               </li>
               <li>
                 <DishItem
-                  img={ravanello}
+                  img={photoPlaceholder}
                   quantity={1}
                   name={`Salada Radish`}
                   amount={25.97}
@@ -47,7 +47,7 @@ export function Payment() {
               </li>
               <li>
                 <DishItem
-                  img={ravanello}
+                  img={photoPlaceholder}
                   quantity={1}
                   name={`Salada Radish`}
                   amount={25.97}
@@ -56,16 +56,18 @@ export function Payment() {
               </li>
             </ul>
 
-            <p>Total: <span>R$ 103,88</span></p>
+            <p>
+              Total: <span>R$ 103,88</span>
+            </p>
           </section>
 
           <Link to="/payment-only">
             <Button title="Avançar" />
           </Link>
-          
-          <section id='payment'>
+
+          <section id="payment">
             <h1>Pagamento</h1>
-            <PaymentItem/>
+            <PaymentItem />
           </section>
         </Content>
       </main>
