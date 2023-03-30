@@ -74,6 +74,11 @@ export function New() {
     setNewIngredient('');
     document.getElementById('add').focus();
   }
+  function handleRemoveIngredient(ingredientDeleted) {
+    setIngredients((prevState) =>
+      prevState.filter((ingredient) => ingredient !== ingredientDeleted)
+    );
+  }
 
   function handleUploadPhoto(event) {
     const file = event.target.files[0];
@@ -140,6 +145,7 @@ export function New() {
                   <AddIngredients
                     key={String(index)}
                     value={ingredient}
+                    onClick={(e) => handleRemoveIngredient(ingredient)}
                     size={String(ingredient.length)}
                   />
                 ))}
