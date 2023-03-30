@@ -2,20 +2,24 @@ import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { SelectStatus } from '../../components/SelectStatus';
 
+import { useAuth } from '../../hooks/auth';
+
+
 import { Container, Content, RequestMobile } from './styles';
 
 export function Requests() {
-  const isAdmin = true;
+  const { user } = useAuth();
+
+
   return (
     <Container>
       <Header />
-
       <main>
         <Content>
-          {isAdmin ? <h1>Pedidos</h1> : <h1>Histórico de pedidos</h1>}
+          {user.isAdmin ? <h1>Pedidos</h1> : <h1>Histórico de pedidos</h1>}
 
           <section id="requests">
-            <RequestMobile isAdmin={isAdmin}>
+            <RequestMobile isAdmin={user.isAdmin}>
               <span className="code">000004</span>
               {/* <SelectStatus isDisabled /> */}
               <span className="time">20/05 às 18h00</span>
@@ -24,9 +28,9 @@ export function Requests() {
                 1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x
                 Suco de Maracujá
               </p>
-              <SelectStatus className="status" isDisabled={!isAdmin} />
+              <SelectStatus className="status" isDisabled={!user.isAdmin} />
             </RequestMobile>
-            <RequestMobile isAdmin={isAdmin}>
+            <RequestMobile isAdmin={user.isAdmin}>
               <span className="code">000004</span>
               {/* <SelectStatus isDisabled /> */}
               <span className="time">20/05 às 18h00</span>
@@ -35,9 +39,9 @@ export function Requests() {
                 1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x
                 Suco de Maracujá
               </p>
-              <SelectStatus className="status" isDisabled={!isAdmin} />
+              <SelectStatus className="status" isDisabled={!user.isAdmin} />
             </RequestMobile>
-            <RequestMobile isAdmin={isAdmin}>
+            <RequestMobile isAdmin={user.isAdmin}>
               <span className="code">000004</span>
               {/* <SelectStatus isDisabled /> */}
               <span className="time">20/05 às 18h00</span>
@@ -46,9 +50,9 @@ export function Requests() {
                 1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x
                 Suco de Maracujá
               </p>
-              <SelectStatus className="status" isDisabled={!isAdmin} />
+              <SelectStatus className="status" isDisabled={!user.isAdmin} />
             </RequestMobile>
-            <RequestMobile isAdmin={isAdmin}>
+            <RequestMobile isAdmin={user.isAdmin}>
               <span className="code">000004</span>
               {/* <SelectStatus isDisabled /> */}
               <span className="time">20/05 às 18h00</span>
@@ -57,7 +61,7 @@ export function Requests() {
                 1 x Salada Radish, 1 x Torradas de Parma, 1 x Chá de Canela, 1 x
                 Suco de Maracujá
               </p>
-              <SelectStatus className="status" isDisabled={!isAdmin} />
+              <SelectStatus className="status" isDisabled={!user.isAdmin} />
             </RequestMobile>
           </section>
 
@@ -73,7 +77,7 @@ export function Requests() {
             <tbody>
               <tr>
                 <td>
-                  <SelectStatus isDisabled={!isAdmin} />
+                  <SelectStatus isDisabled={!user.isAdmin} />
                 </td>
 
                 <td className="code">000004</td>
@@ -86,7 +90,7 @@ export function Requests() {
               </tr>
               <tr>
                 <td>
-                  <SelectStatus isDisabled={!isAdmin} />
+                  <SelectStatus isDisabled={!user.isAdmin} />
                 </td>
 
                 <td className="code">000003</td>
@@ -99,7 +103,7 @@ export function Requests() {
               </tr>
               <tr>
                 <td>
-                  <SelectStatus isDisabled={!isAdmin} />
+                  <SelectStatus isDisabled={!user.isAdmin} />
                 </td>
 
                 <td className="code">000002</td>

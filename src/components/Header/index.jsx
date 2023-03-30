@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { FiSearch, FiLogOut, FiShoppingCart } from 'react-icons/fi';
 import { IoReceiptOutline } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
+import { useAuth } from '../../hooks/auth';
 
 import { Input } from '../Input';
 import { Button } from '../Button';
@@ -17,7 +19,15 @@ import { LinkText } from '../LinkText';
 export function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
-  const isAdmin = false;
+  const navigate = useNavigate();
+
+  const { user, signOut } = useAuth();
+
+  function handleSignOut() {
+    signOut();
+    navigate('/');
+  }
+
   let scrollTop;
   let scrollLeft;
   function disableScroll() {
@@ -54,7 +64,7 @@ export function Header() {
   }, []);
 
   return (
-    <Container isAdmin={isAdmin}>
+    <Container isAdmin={user.isAdmin}>
       <header>
         <button id="menuBurgue">
           {!showMenu && (
@@ -83,7 +93,7 @@ export function Header() {
             <Link id="logo" to="/">
               <img src={explorer} alt="Logo foodExplorer" />
               <h1>food explorer</h1>
-              {isAdmin && <span>admin</span>}
+              {user.isAdmin && <span>admin</span>}
             </Link>
 
             <div id="search">
@@ -94,27 +104,34 @@ export function Header() {
               />
             </div>
 
-            {!isAdmin && (
+            {!user.isAdmin && (
               <div id="buttons">
-                <LinkText name="Histórico de pedidos" to="/requests" id="historic" />
+                <LinkText
+                  name="Histórico de pedidos"
+                  to="/requests"
+                  id="historic"
+                />
                 <LinkText name="Meus favoritos" to="/favorites" id="fav" />
               </div>
             )}
-            {isAdmin && <LinkText name="Novo prato" to="/new" id="new" />}
+            {user.isAdmin && <LinkText name="Novo prato" to="/new" id="new" />}
 
-            <Link to={isAdmin ? '/requests' : '/payment'} id="receiptDesktop">
+            <Link
+              to={user.isAdmin ? '/requests' : '/payment'}
+              id="receiptDesktop"
+            >
               <Button
                 id="redBtn"
-                title={isAdmin ? `Pedidos (${0})` : `(${0})`}
-                icon={isAdmin ? IoReceiptOutline : FiShoppingCart}
+                title={user.isAdmin ? `Pedidos (${0})` : `(${0})`}
+                icon={user.isAdmin ? IoReceiptOutline : FiShoppingCart}
               />
             </Link>
 
-            <FiLogOut id="logout" />
+            <FiLogOut id="logout" onClick={handleSignOut} />
 
-            <Link to={isAdmin ? '/requests' : '/payment'}>
+            <Link to={user.isAdmin ? '/requests' : '/payment'}>
               <button id="receipt">
-                {isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
+                {user.isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
 
                 <span>0</span>
               </button>

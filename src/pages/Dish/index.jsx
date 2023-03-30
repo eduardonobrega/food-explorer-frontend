@@ -1,7 +1,8 @@
 import { FiChevronLeft } from 'react-icons/fi';
 import { IoReceiptOutline } from 'react-icons/io5';
-
 import { Link } from 'react-router-dom';
+
+import { useAuth } from '../../hooks/auth';
 
 import { Container, Content } from './styles';
 
@@ -15,7 +16,8 @@ import { Button } from '../../components/Button';
 import ravanello from '../../assets/ravanello.png';
 
 export function Dish() {
-  const isAdmin = false;
+  const { user } = useAuth();
+
   return (
     <Container>
       <Header />
@@ -25,7 +27,7 @@ export function Dish() {
       </div>
 
       <main>
-        <Content isAdmin={isAdmin}>
+        <Content isAdmin={user.isAdmin}>
           <img src={ravanello} alt="" />
 
           <div>
@@ -45,11 +47,11 @@ export function Dish() {
             </ul>
 
             <div>
-              {!isAdmin && <Counter quantity="05" />}
-              <Link to={isAdmin ? `/edit/1` : ''}>
+              {!user.isAdmin && <Counter quantity="05" />}
+              <Link to={user.isAdmin ? `/edit/1` : ''}>
                 <Button
-                  title={isAdmin ? 'Editar prato' : 'pedir ∙ R$ 25,00'}
-                  icon={isAdmin ? undefined : IoReceiptOutline}
+                  title={user.isAdmin ? 'Editar prato' : 'pedir ∙ R$ 25,00'}
+                  icon={user.isAdmin ? undefined : IoReceiptOutline}
                 />
               </Link>
             </div>
