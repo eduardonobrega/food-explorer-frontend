@@ -66,6 +66,15 @@ export function Edit() {
     }
   }
 
+  async function removeDish() {
+    const confirmation = confirm(`Certeza que deseja remover o ${name}`);
+    if (confirmation) {
+      await api.delete(`/dishes/${id}`);
+      alert('Prato removido!');
+      navigate('/');
+    }
+  }
+
   function handleNewIngredient() {
     if (newIngredient) {
       const isNewIngredient = !ingredients.includes(newIngredient);
@@ -207,7 +216,7 @@ export function Edit() {
           </div>
 
           <div>
-            <Button type="button" id="buttonRemove" title="Excluir prato" />
+            <Button type="button" id="buttonRemove" title="Excluir prato" onClick={removeDish}/>
             <Button
               id="buttonAdd"
               title="Salvar alterações"
