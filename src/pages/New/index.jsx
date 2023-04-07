@@ -32,10 +32,15 @@ export function New() {
       return;
     }
 
+    
     if (newIngredient != '') {
       return alert(
-        `Clique no + para adicionar o ingredient tag: ${newIngredient}. ou limpe o campo!`
+        `Clique no + para adicionar o ingrediente tag: ${newIngredient}. ou limpe o campo!`
       );
+    }
+
+    if(ingredients.length === 0) {
+      return alert('Informe ao menos o ingrediente principal do prato!1');
     }
 
     const response = await api.post('/dishes', {
