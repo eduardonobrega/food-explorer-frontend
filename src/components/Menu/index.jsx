@@ -8,7 +8,7 @@ import { Footer } from '../Footer';
 
 import { Container } from './styles';
 
-export function Menu({ show }) {
+export function Menu({ show, onChange }) {
   const { user, signOut } = useAuth();
   
   function handleSignOut() {
@@ -23,6 +23,7 @@ export function Menu({ show }) {
           <Input
             type="search"
             placeholder="Busque por pratos ou ingredientes"
+            onChange={onChange}
           />
         </div>
 
