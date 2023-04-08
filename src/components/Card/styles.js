@@ -36,10 +36,6 @@ export const Container = styled.div`
       &.fav > path {
         fill: ${({ theme }) => theme.LIGHT[300]};
       }
-
-      &:hover > path {
-        fill: ${({ theme }) => theme.LIGHT[300]};
-      }
     }
   }
 
