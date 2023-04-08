@@ -2,8 +2,7 @@ import { Container } from './styles';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 import { useState } from 'react';
 
-export function Counter() {
-  const [quantity, setQuantity] = useState(1);
+export function Counter({quantity, setQuantity}) {
 
   function handleDecrement() {
     if (quantity > 1) {
