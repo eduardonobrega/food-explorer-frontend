@@ -7,6 +7,26 @@ const AuthContext = createContext({});
 function AuthProvider({ children }) {
   const [data, setData] = useState({});
 
+  async function createPurchases() {
+    await api.post('purchases');
+    await updateRequests();
+  }
+
+  async function updateStatusPurchase({ purchase_id, status }) {
+    await api.patch(`purchases/${purchase_id}`, { status });
+
+    const purchases = await api.get('/purchases');
+    localStorage.setItem(
+      '@foodexplorer:purchases',
+      JSON.stringify(purchases.data)
+    );
+
+    setData((prevState) => ({
+      ...prevState,
+      purchases: JSON.parse(localStorage.getItem('@foodexplorer:purchases')),
+    }));
+  }
+
   async function createRequests({ quantity, dish_id }) {
     await api.post('/requests', { quantity, dish_id });
 
@@ -45,10 +65,17 @@ function AuthProvider({ children }) {
         JSON.stringify(requests.data)
       );
 
+      const purchases = await api.get('/purchases');
+      localStorage.setItem(
+        '@foodexplorer:purchases',
+        JSON.stringify(purchases.data)
+      );
+
       setData({
         user,
         token,
         requests: JSON.parse(localStorage.getItem('@foodexplorer:requests')),
+        purchases: JSON.parse(localStorage.getItem('@foodexplorer:purchases')),
       });
     } catch (error) {
       if (error.response) {
@@ -80,10 +107,19 @@ function AuthProvider({ children }) {
           JSON.stringify(response.data)
         );
 
+        const purchases = await api.get('/purchases');
+        localStorage.setItem(
+          '@foodexplorer:purchases',
+          JSON.stringify(purchases.data)
+        );
+
         setData({
           user: JSON.parse(user),
-          requests: JSON.parse(localStorage.getItem('@foodexplorer:requests')),
           token,
+          requests: JSON.parse(localStorage.getItem('@foodexplorer:requests')),
+          purchases: JSON.parse(
+            localStorage.getItem('@foodexplorer:purchases')
+          ),
         });
       }
     }
@@ -98,8 +134,11 @@ function AuthProvider({ children }) {
         signOut,
         user: data.user,
         userRequests: data.requests,
+        userPurchases: data.purchases,
         createRequests,
         updateRequests,
+        createPurchases,
+        updateStatusPurchase,
       }}
     >
       {children}

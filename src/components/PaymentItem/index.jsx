@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 import { IoReceiptOutline } from 'react-icons/io5';
 
 import { useAuth } from '../../hooks/auth';
-import { api } from '../../services/api';
 
 import creditCard from '../../assets/icons/creditCard.svg';
 import pix from '../../assets/icons/pix.svg';
@@ -20,7 +19,9 @@ export function PaymentItem() {
   const [pixCode, setPixCode] = useState('');
   const inputCopy = useRef();
 
-  const { updateRequests } = useAuth();
+  const [numberCard, setNumberCard] = useState('');
+
+  const { createPurchases, userPurchases, userRequests } = useAuth();
 
   function copyText(e) {
     inputCopy.current.select();
@@ -35,9 +36,33 @@ export function PaymentItem() {
   }
 
   async function handlePurchase() {
-    await api.post('purchases');
-    await updateRequests();
+    if (userRequests.length === 0) {
+      return alert('Adicione oa menos um item no carrinho');
+    }
+
+    await createPurchases();
+    setPurchase('await');
   }
+
+  useEffect(() => {
+    if (userRequests.length !== 0) {
+      setPurchase('initial');
+      return;
+    }
+    const lastPurchase = userPurchases[userPurchases.length - 1];
+    if (lastPurchase) {
+      console.log(lastPurchase);
+      if (lastPurchase.status === 'pending') {
+        setPurchase('await');
+      } else if (lastPurchase.status === 'preparing') {
+        setPurchase('pay');
+      } else {
+        setPurchase('delivered');
+      }
+    } else {
+      setPurchase('initial');
+    }
+  }, [userPurchases]);
 
   useEffect(() => {
     const randomPixCode = (len) => {
@@ -135,7 +160,12 @@ export function PaymentItem() {
             {purchase == 'delivered' && (
               <>
                 <img src={forkKnife} alt="ícone de uma faca e um garfo" />
-                <p>Pedido entregue!</p>
+                <p>
+                  Seu ultimo pedido foi entregue! <br />{' '}
+                  <span>
+                    Adicione algo ao carrinho para fazer um novo pedido
+                  </span>
+                </p>
               </>
             )}
           </div>

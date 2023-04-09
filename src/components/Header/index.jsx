@@ -21,7 +21,9 @@ export function Header({ onChange }) {
 
   const navigate = useNavigate();
 
-  const { user, signOut, userRequests } = useAuth();
+  const { user, signOut, userRequests, userPurchases } = useAuth();
+
+  const [purchasesPending, setPurchasesPending] = useState([]);
 
   function handleSignOut() {
     signOut();
@@ -47,6 +49,12 @@ export function Header({ onChange }) {
   function handleModal() {
     setShowMenu((prevState) => !prevState);
   }
+
+  useEffect(() => {
+    setPurchasesPending(
+      userPurchases.filter((purchase) => purchase.status === 'pending')
+    );
+  }, [userPurchases]);
 
   useEffect(() => {
     enableScroll();
@@ -124,7 +132,9 @@ export function Header({ onChange }) {
               <Button
                 id="redBtn"
                 title={
-                  user.isAdmin ? `Pedidos (${0})` : `(${userRequests.length})`
+                  user.isAdmin
+                    ? `Pedidos (${purchasesPending.length})`
+                    : `(${userRequests.length})`
                 }
                 icon={user.isAdmin ? IoReceiptOutline : FiShoppingCart}
               />
@@ -137,7 +147,7 @@ export function Header({ onChange }) {
                 {user.isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
 
                 <span>
-                  {user.isAdmin ? 0 : userRequests.length}
+                  {user.isAdmin ? purchasesPending.length : userRequests.length}
                 </span>
               </button>
             </Link>
