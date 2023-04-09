@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { IoReceiptOutline } from 'react-icons/io5';
-import { Container } from './styles';
 
-import { Button } from '../Button';
+import { useAuth } from '../../hooks/auth';
+import { api } from '../../services/api';
 
 import creditCard from '../../assets/icons/creditCard.svg';
 import pix from '../../assets/icons/pix.svg';
@@ -10,12 +10,17 @@ import qrCode from '../../assets/qr-code.svg';
 import forkKnife from '../../assets/forkKnife.svg';
 import check from '../../assets/check.svg';
 import clock from '../../assets/clock.svg';
+import { Button } from '../Button';
+
+import { Container } from './styles';
 
 export function PaymentItem() {
   const [pixSelected, setPixSelected] = useState(true);
   const [purchase, setPurchase] = useState('initial'); // 'initial await pay delivered';
   const [pixCode, setPixCode] = useState('');
   const inputCopy = useRef();
+
+  const { updateRequests } = useAuth();
 
   function copyText(e) {
     inputCopy.current.select();
@@ -27,6 +32,11 @@ export function PaymentItem() {
     } else {
       navigator.clipboard.writeText(text);
     }
+  }
+
+  async function handlePurchase() {
+    await api.post('purchases');
+    await updateRequests();
   }
 
   useEffect(() => {
@@ -103,6 +113,7 @@ export function PaymentItem() {
               type="button"
               icon={IoReceiptOutline}
               title="Finalizar pagamento"
+              onClick={handlePurchase}
             />
           </form>
         )}

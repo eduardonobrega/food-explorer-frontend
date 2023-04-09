@@ -83,6 +83,10 @@ export const Container = styled.div`
 
     > button {
       padding: 4px 0;
+      background-color: ${({ inCart, theme }) =>
+        inCart
+          ? `${theme.TINTS.MINT}`
+          : `${({ theme }) => theme.TINTS.TOMATO[100]}`};
     }
   }
 
@@ -110,7 +114,7 @@ export const Container = styled.div`
         font-size: 1.4rem;
         line-height: 2.2rem;
         text-overflow: ellipsis;
-        
+
         overflow: hidden;
         display: -webkit-box;
         max-height: 4.4rem;

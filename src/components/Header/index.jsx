@@ -21,7 +21,7 @@ export function Header({ onChange }) {
 
   const navigate = useNavigate();
 
-  const { user, signOut } = useAuth();
+  const { user, signOut, userRequests } = useAuth();
 
   function handleSignOut() {
     signOut();
@@ -123,7 +123,9 @@ export function Header({ onChange }) {
             >
               <Button
                 id="redBtn"
-                title={user.isAdmin ? `Pedidos (${0})` : `(${0})`}
+                title={
+                  user.isAdmin ? `Pedidos (${0})` : `(${userRequests.length})`
+                }
                 icon={user.isAdmin ? IoReceiptOutline : FiShoppingCart}
               />
             </Link>
@@ -134,7 +136,9 @@ export function Header({ onChange }) {
               <button id="receipt">
                 {user.isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
 
-                <span>0</span>
+                <span>
+                  {user.isAdmin ? 0 : userRequests.length}
+                </span>
               </button>
             </Link>
           </>
@@ -142,7 +146,7 @@ export function Header({ onChange }) {
 
         {showMenu && <h2>Menu</h2>}
       </header>
-      <Menu show={showMenu} onChange={onChange}/>
+      <Menu show={showMenu} onChange={onChange} />
     </Container>
   );
 }

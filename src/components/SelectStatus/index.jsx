@@ -84,15 +84,21 @@ const colourStyles = {
   }),
 };
 
-export function SelectStatus({ isDisabled = false, className }) {
+export function SelectStatus({
+  isDisabled = false,
+  className,
+  value,
+  ...rest
+}) {
   return (
     <Container className={className}>
       <Select
         options={options}
         isSearchable={false}
-        defaultValue={options[0]}
+        defaultValue={options.find((option) => option.value === value)}
         styles={colourStyles}
         isDisabled={isDisabled}
+        {...rest}
       />
     </Container>
   );

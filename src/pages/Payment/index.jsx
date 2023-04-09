@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import photoPlaceholder from '../../assets/photoPlaceholder.png';
 import { api } from '../../services/api';
 
+import { useAuth } from '../../hooks/auth';
+
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { DishItem } from '../../components/DishItem';
@@ -13,29 +15,20 @@ import { PaymentItem } from '../../components/PaymentItem';
 import { Container, Content } from './styles';
 
 export function Payment() {
-  const [requests, setRequests] = useState([]);
   const [total, setTotal] = useState(0);
+
+  const { updateRequests, userRequests } = useAuth();
 
   async function handleRemoveRequest(id) {
     await api.delete(`/requests/${id}`);
-    setRequests((prevState) =>
-      prevState.filter((request) => request.id !== id)
-    );
+    await updateRequests();
   }
 
   useEffect(() => {
-    const sum = requests.reduce((acc, request) => acc + request.subTotal, 0);
+    const sum = userRequests.reduce((acc, request) => acc + request.subTotal, 0);
     setTotal(sum);
-  }, [requests]);
+  }, [userRequests]);
 
-  useEffect(() => {
-    async function fetchRequests() {
-      const response = await api.get('/requests');
-      setRequests(response.data);
-    }
-
-    fetchRequests();
-  }, []);
 
   return (
     <Container>
@@ -45,7 +38,7 @@ export function Payment() {
           <section id="order">
             <h1>Meu pedido</h1>
             <ul>
-              {requests.map((request) => (
+              {userRequests.map((request) => (
                 <li key={String(request.id)}>
                   <DishItem
                     img={

@@ -8,7 +8,6 @@ import { api } from '../../services/api';
 import Edit from '../../assets/icons/pencil.svg';
 import photoPlaceholder from '../../assets/photoPlaceholder.png';
 
-
 import { Counter } from '../Counter';
 import { Button } from '../Button';
 
@@ -18,15 +17,16 @@ export function Card({ dish }) {
   const [favorite, setFavorite] = useState(false);
   const [idFavorite, setIdFavorite] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [inCart, setInCart] = useState(false);
 
-  const { user } = useAuth();
+  const { user, createRequests, userRequests } = useAuth();
 
   const photoUrl = dish.photo
     ? `${api.defaults.baseURL}/files/${dish.photo}`
     : photoPlaceholder;
 
   async function handleRequest() {
-    await api.post('/requests', { quantity,dish_id: dish.id });
+    await createRequests({ quantity, dish_id: dish.id });
   }
 
   async function handleFavorite() {
@@ -40,6 +40,17 @@ export function Card({ dish }) {
     }
   }
 
+  useEffect(() => {
+    const request = userRequests.find(
+      (requests) => requests.dish_id === dish.id
+    );
+    if (request) {
+      setQuantity(request?.quantity);
+      setInCart(true);
+    } else {
+      setInCart(false);
+    }
+  }, [userRequests]);
   useEffect(() => {
     async function fetchFavorites() {
       const response = await api.get('/favorites');
@@ -55,7 +66,7 @@ export function Card({ dish }) {
   }, []);
 
   return (
-    <Container>
+    <Container inCart={inCart}>
       {user.isAdmin ? (
         <button>
           <Link to={`/edit/${dish.id}`}>
@@ -82,7 +93,7 @@ export function Card({ dish }) {
       {!user.isAdmin && (
         <div>
           <Counter quantity={quantity} setQuantity={setQuantity} />
-          <Button title="incluir" onClick={handleRequest} />
+          <Button title={inCart ? 'alterar' : 'incluir'} onClick={handleRequest} />
         </div>
       )}
     </Container>
