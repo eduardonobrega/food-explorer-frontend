@@ -12,12 +12,17 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 
 export function Home() {
-  const [dishes, setDishes] = useState([]);
   const [search, setSearch] = useState('');
+  const [meals, setMeals] = useState([]);
+  const [desserts, setDesserts] = useState([]);
+  const [drinks, setDrinks] = useState([]);
+
   useEffect(() => {
     async function fetchDishes() {
       const response = await api.get(`/dishes/?search=${search}`);
-      setDishes(response.data);
+      setMeals(response.data.filter((dish) => dish.category === 'meal'));
+      setDesserts(response.data.filter((dish) => dish.category === 'dessert'));
+      setDrinks(response.data.filter((dish) => dish.category === 'drink'));
     }
 
     fetchDishes();
@@ -41,28 +46,23 @@ export function Home() {
       <main>
         <Section
           title="Refeições"
-          cards={dishes.map((dish) => {
-            if (dish.category == 'meals') {
-              return <Card dish={dish} />;
-            }
-          })}
+          cards={meals.map((dish) => (
+            <Card dish={dish} />
+          ))}
         />
 
         <Section
           title="Sobremesas"
-          cards={dishes.map((dish) => {
-            if (dish.category == 'dessert') {
-              return <Card dish={dish} />;
-            }
-          })}
+          cards={desserts.map((dish) => (
+            <Card dish={dish} />
+          ))}
         />
+
         <Section
           title="Bebidas"
-          cards={dishes.map((dish) => {
-            if (dish.category == 'drink') {
-              return <Card dish={dish} />;
-            }
-          })}
+          cards={drinks.map((dish) => (
+            <Card dish={dish} />
+          ))}
         />
       </main>
       <Footer />

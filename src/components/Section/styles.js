@@ -18,9 +18,10 @@ export const Container = styled.section`
   }
 
   .swiper-wrapper {
-    /* background-color: blue; */
+    /* background-color: blue;
     justify-content: start;
-    align-items: center;
+    align-items: center; */
+   
   }
   .swiper-slide {
     /* background-color: yellow; */
