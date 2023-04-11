@@ -19,6 +19,9 @@ export const Container = styled.header`
     flex: 2;
     padding-left: 1.2rem;
 
+    opacity: ${({ searchDisabled }) => (searchDisabled ? 0.5 : 1)};
+    cursor: ${({ searchDisabled }) => (searchDisabled ? 'not-allowed' :'unset')};
+
     > svg {
       min-width: 1.54rem;
     }
@@ -77,7 +80,7 @@ export const Container = styled.header`
         background-color: transparent;
         position: relative;
         > svg {
-          color: ${({theme}) => theme.LIGHT[100]};
+          color: ${({ theme }) => theme.LIGHT[100]};
           font-size: 3rem;
         }
         > span {
@@ -110,7 +113,6 @@ export const Container = styled.header`
         display: none;
       }
     }
-    
 
     @media (min-width: 769px) {
       gap: clamp(1.5rem, -0.7573rem + 3.527vw, 3.2rem); // mudar
@@ -155,7 +157,7 @@ export const Container = styled.header`
       }
 
       > svg {
-        width: clamp(2.5rem, -0.3rem + 4.375vw, 3.2rem); // mudar 
+        width: clamp(2.5rem, -0.3rem + 4.375vw, 3.2rem); // mudar
         height: clamp(2.5rem, -0.3rem + 4.375vw, 3.2rem); // mudar
         cursor: pointer;
       }

@@ -17,6 +17,9 @@ export const Container = styled.div`
     border-radius: 0.8rem;
     transition: outline 300ms;
 
+    &:disabled {
+      cursor: not-allowed;
+    }
     &:focus {
       outline: 2px solid ${({ theme }) => theme.TINTS.CAKE[300]};
     }

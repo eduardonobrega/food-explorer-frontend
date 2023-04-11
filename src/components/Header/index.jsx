@@ -16,7 +16,7 @@ import explorer from '../../assets/icons/explorer.svg';
 import { Container } from './styles';
 import { LinkText } from '../LinkText';
 
-export function Header({ onChange }) {
+export function Header({ onChange, searchDisabled = true }) {
   const [showMenu, setShowMenu] = useState(false);
 
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ export function Header({ onChange }) {
   }, []);
 
   return (
-    <Container isAdmin={user.isAdmin}>
+    <Container isAdmin={user.isAdmin} searchDisabled={searchDisabled}>
       <header>
         <button id="menuBurgue">
           {!showMenu && (
@@ -110,6 +110,7 @@ export function Header({ onChange }) {
                 type="search"
                 placeholder="Busque por pratos ou ingredientes"
                 onChange={onChange}
+                disabled={searchDisabled}
               />
             </div>
 
@@ -156,7 +157,11 @@ export function Header({ onChange }) {
 
         {showMenu && <h2>Menu</h2>}
       </header>
-      <Menu show={showMenu} onChange={onChange} />
+      <Menu
+        show={showMenu}
+        onChange={onChange}
+        searchDisabled={searchDisabled}
+      />
     </Container>
   );
 }
