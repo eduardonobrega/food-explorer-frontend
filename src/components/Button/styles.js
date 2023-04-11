@@ -18,6 +18,12 @@ export const Container = styled.button`
   gap: 0.8rem;
 
   cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+    filter: none;
+    cursor: wait;
+  }
   > svg {
     font-size: 2.4rem;
   }

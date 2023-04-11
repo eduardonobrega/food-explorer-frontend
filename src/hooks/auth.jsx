@@ -101,18 +101,21 @@ function AuthProvider({ children }) {
       if (user && token) {
         api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
-        const response = await api.get('/requests');
-        localStorage.setItem(
-          '@foodexplorer:requests',
-          JSON.stringify(response.data)
-        );
+        try {
+          const response = await api.get('/requests');
+          localStorage.setItem(
+            '@foodexplorer:requests',
+            JSON.stringify(response.data)
+          );
 
-        const purchases = await api.get('/purchases');
-        localStorage.setItem(
-          '@foodexplorer:purchases',
-          JSON.stringify(purchases.data)
-        );
-
+          const purchases = await api.get('/purchases');
+          localStorage.setItem(
+            '@foodexplorer:purchases',
+            JSON.stringify(purchases.data)
+          );
+        } catch (error) {
+          return;
+        }
         setData({
           user: JSON.parse(user),
           token,
