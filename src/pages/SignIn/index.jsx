@@ -10,6 +10,7 @@ import { useState } from 'react';
 export function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [btnDisabled, setBtnDisabled] = useState(false);
 
   const { signIn } = useAuth();
 
@@ -17,8 +18,10 @@ export function SignIn() {
     if (!email || !password || !email.includes('@') || password.length < 6) {
       return;
     }
-
-    await signIn({ email, password });
+    setBtnDisabled(true);
+    await signIn({ email, password }).then(() => {
+      setBtnDisabled(false);
+    });
   }
 
   return (
@@ -61,7 +64,7 @@ export function SignIn() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button title="Entrar" onClick={handleSignIn} />
+        <Button title="Entrar" onClick={handleSignIn} disabled={btnDisabled} />
         <LinkText name="Criar uma conta" to="/register" />
       </Form>
     </Container>
