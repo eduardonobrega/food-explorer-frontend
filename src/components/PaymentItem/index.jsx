@@ -49,6 +49,7 @@ export function PaymentItem() {
     }
 
     await createPurchases();
+    toast.success('Recebemos seu pedido e logo logo ele chegará na sua casa!')
     setPurchase('await');
   }
 
