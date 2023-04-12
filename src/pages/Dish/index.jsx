@@ -20,8 +20,9 @@ import photoPlaceholder from '../../assets/photoPlaceholder.png';
 export function Dish() {
   const [dish, setDish] = useState({});
   const [quantity, setQuantity] = useState(1);
+  const [inCart, setInCart] = useState(false);
 
-  const { user, createRequests } = useAuth();
+  const { user, createRequests, userRequests } = useAuth();
   const { id } = useParams();
 
   const photoUrl = dish.photo
@@ -42,6 +43,18 @@ export function Dish() {
     fetchDish();
   }, []);
 
+  useEffect(() => {
+    const request = userRequests.find(
+      (requests) => requests.dish_id == id
+    );
+    if (request) {
+      setQuantity(request?.quantity);
+      setInCart(true);
+    } else {
+      setInCart(false);
+    }
+  }, [userRequests]);
+
   return (
     <Container>
       <Header />
@@ -54,6 +67,7 @@ export function Dish() {
         <Content
           isAdmin={user.isAdmin}
           Numberingredients={dish.ingredients?.length}
+          inCart={inCart}
         >
           <img src={photoUrl} alt="" />
           <div>
@@ -80,13 +94,12 @@ export function Dish() {
                   title={
                     user.isAdmin
                       ? 'Editar prato'
-                      : `pedir ∙ ${(dish.price * quantity).toLocaleString(
-                          'pt-BR',
-                          {
-                            style: 'currency',
-                            currency: 'BRL',
-                          }
-                        )}`
+                      : `${inCart ? 'alterar' : 'incluir'} ∙ ${(
+                          dish.price * quantity
+                        ).toLocaleString('pt-BR', {
+                          style: 'currency',
+                          currency: 'BRL',
+                        })}`
                   }
                   icon={user.isAdmin ? undefined : IoReceiptOutline}
                 />

@@ -72,7 +72,8 @@ export const Content = styled.div`
     }
 
     > ul {
-      columns: ${({ Numberingredients }) => (Numberingredients >= 3 ? 3 : Numberingredients)};
+      columns: ${({ Numberingredients }) =>
+        Numberingredients >= 3 ? 3 : Numberingredients};
       text-align: center;
       gap: 1rem;
 
@@ -98,6 +99,10 @@ export const Content = styled.div`
       }
       > a > button {
         font-size: clamp(1rem, 0.6632rem + 1.0526vw, 1.4rem);
+        background-color: ${({ inCart, theme }) =>
+          inCart
+            ? `${theme.TINTS.MINT}`
+            : `${({ theme }) => theme.TINTS.TOMATO[100]}`};
       }
     }
   }
