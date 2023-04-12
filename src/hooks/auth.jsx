@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { api } from '../services/api';
 
@@ -79,9 +80,9 @@ function AuthProvider({ children }) {
       });
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        alert('Não foi possível entrar');
+        toast.error('Não foi possível entrar');
       }
     }
   }

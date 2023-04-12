@@ -1,6 +1,7 @@
 import { FiChevronLeft, FiUpload } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { api } from '../../services/api';
 
@@ -32,15 +33,14 @@ export function New() {
       return;
     }
 
-    
     if (newIngredient != '') {
-      return alert(
+      return toast.warn(
         `Clique no + para adicionar o ingrediente tag: ${newIngredient}. ou limpe o campo!`
       );
     }
 
-    if(ingredients.length === 0) {
-      return alert('Informe ao menos o ingrediente principal do prato!1');
+    if (ingredients.length === 0) {
+      return toast.warn('Informe ao menos o ingrediente principal do prato!');
     }
 
     const response = await api.post('/dishes', {
@@ -72,7 +72,7 @@ export function New() {
       if (isNewIngredient) {
         setIngredients((prevState) => [...prevState, newIngredient]);
       } else {
-        alert('Ingredient já Adicionado');
+        toast.warn('Ingredient já Adicionado!');
       }
     }
 

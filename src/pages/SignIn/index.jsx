@@ -1,6 +1,7 @@
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { LinkText } from '../../components/LinkText';
+import { toast } from 'react-toastify';
 
 import { useAuth } from '../../hooks/auth';
 
@@ -15,8 +16,14 @@ export function SignIn() {
   const { signIn } = useAuth();
 
   async function handleSignIn() {
-    if (!email || !password || !email.includes('@') || password.length < 6) {
-      return;
+    if (!email || !password) {
+      return toast.warn('Preencha todos os campos!');
+    }
+    if (!email.includes('@')) {
+      return toast.warn('Informe um e-mail válido!');
+    }
+    if (password.length < 6) {
+      return toast.warn('Informe uma senha válida!');
     }
     setBtnDisabled(true);
     await signIn({ email, password }).then(() => {

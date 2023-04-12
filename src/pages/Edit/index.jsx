@@ -1,6 +1,7 @@
 import { FiChevronLeft, FiUpload } from 'react-icons/fi';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { api } from '../../services/api';
 
@@ -34,7 +35,7 @@ export function Edit() {
     }
 
     if (newIngredient != '') {
-      return alert(
+      return toast.warn(
         `Clique no + para adicionar o ingredient tag: ${newIngredient}. ou limpe o campo!`
       );
     }
@@ -54,14 +55,13 @@ export function Edit() {
 
         await api.patch(`dishes/photo/${id}`, fileUploadForm);
       }
-
-      alert('Prato atualizado!');
+      toast.success('Prato atualizado!');
       navigate(-1);
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        alert('Não foi possível atualizar!');
+        toast.error('Não foi possível atualizar!');
       }
     }
   }
@@ -70,7 +70,7 @@ export function Edit() {
     const confirmation = confirm(`Certeza que deseja remover o ${name}`);
     if (confirmation) {
       await api.delete(`/dishes/${id}`);
-      alert('Prato removido!');
+      toast.success('Prato removido!');
       navigate('/');
     }
   }
@@ -81,7 +81,7 @@ export function Edit() {
       if (isNewIngredient) {
         setIngredients((prevState) => [...prevState, newIngredient]);
       } else {
-        alert('Ingredient já Adicionado');
+        toast.warn('Ingredient já Adicionado');
       }
     }
 
@@ -216,7 +216,12 @@ export function Edit() {
           </div>
 
           <div>
-            <Button type="button" id="buttonRemove" title="Excluir prato" onClick={removeDish}/>
+            <Button
+              type="button"
+              id="buttonRemove"
+              title="Excluir prato"
+              onClick={removeDish}
+            />
             <Button
               id="buttonAdd"
               title="Salvar alterações"
