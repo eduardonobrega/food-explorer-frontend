@@ -24,12 +24,11 @@
 
 ## 💻 Projeto
 
-<div align="center">
+## Usuário comum na versão desktop:
+![ezgif com-add-text](https://user-images.githubusercontent.com/87456011/231624447-8b5da7f4-fa0a-48f9-b032-20eb248e0205.gif)
 
-[![Video Preview](https://user-images.githubusercontent.com/87456011/221640983-9ef684fc-8317-4537-8c7b-220e5c6e5519.png)](https://user-images.githubusercontent.com/87456011/221640339-d0e7169b-68a6-4c73-9334-532d39a5dc08.mp4)
-
-
-</div>
+## Usuário Admin na versão mobile:
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/87456011/231628596-aef5a1c8-df1c-4f9f-8a4d-c5a9e1091935.gif)
 
 <div align="center">
 
