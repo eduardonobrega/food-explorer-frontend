@@ -18,7 +18,7 @@ import { Container, Form, Textarea } from './styles';
 export function New() {
   const [photoFile, setPhotoFile] = useState(null);
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('meals');
+  const [category, setCategory] = useState('meal');
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
   const [ingredients, setIngredients] = useState([]);
@@ -58,7 +58,7 @@ export function New() {
 
       await api.patch(`dishes/photo/${id}`, fileUploadForm);
     }
-
+    toast.success('Prato adicionado!')
     navigate('/');
     setName('');
     setIngredients([]);
@@ -187,7 +187,7 @@ export function New() {
             />
           </div>
 
-          <Button id="buttonAdd" title="Salvar alterações" onClick={newDish} />
+          <Button id="buttonAdd" title="Adicionar" onClick={newDish} />
         </Form>
       </main>
       <Footer />

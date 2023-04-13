@@ -18,7 +18,7 @@ import { Container, Form, Textarea } from './styles';
 export function Edit() {
   const [photoFile, setPhotoFile] = useState(null);
   const [name, setName] = useState('');
-  const [category, setCategory] = useState('meals');
+  const [category, setCategory] = useState('meal');
   const [price, setPrice] = useState(0);
   const [description, setDescription] = useState('');
   const [ingredients, setIngredients] = useState([]);
