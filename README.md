@@ -27,6 +27,9 @@
 ## Usuário comum na versão desktop:
 ![ezgif com-add-text](https://user-images.githubusercontent.com/87456011/231624447-8b5da7f4-fa0a-48f9-b032-20eb248e0205.gif)
 
+## Usuário Admin na versão desktop:
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/87456011/231628596-aef5a1c8-df1c-4f9f-8a4d-c5a9e1091935.gif)
+
 <div align="center">
 
   <h1><a href="https://foodexplorer.bohr.io/">👾 Site ao vivo</a></h1> 
