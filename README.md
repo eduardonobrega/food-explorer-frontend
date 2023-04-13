@@ -24,12 +24,8 @@
 
 ## 💻 Projeto
 
-<div align="center">
-
-[![Video Preview](https://user-images.githubusercontent.com/87456011/221640983-9ef684fc-8317-4537-8c7b-220e5c6e5519.png)](https://user-images.githubusercontent.com/87456011/221640339-d0e7169b-68a6-4c73-9334-532d39a5dc08.mp4)
-
-
-</div>
+## Usuário comum na versão desktop:
+![ezgif com-add-text](https://user-images.githubusercontent.com/87456011/231624447-8b5da7f4-fa0a-48f9-b032-20eb248e0205.gif)
 
 <div align="center">
 
