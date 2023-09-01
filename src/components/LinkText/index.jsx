@@ -1,4 +1,4 @@
-import { Container } from './styles';
+import { Container } from './styles'
 
 export function LinkText({ name, icon: Icon, ...rest }) {
   return (
@@ -6,5 +6,5 @@ export function LinkText({ name, icon: Icon, ...rest }) {
       {Icon && <Icon />}
       {name}
     </Container>
-  );
+  )
 }

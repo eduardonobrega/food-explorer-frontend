@@ -1,9 +1,5 @@
-import { Container } from "./styles";
+import { Container } from './styles'
 
-export function Ingredient({name}) {
-  return(
-    <Container>
-      {name}
-    </Container>
-  )
+export function Ingredient({ name }) {
+  return <Container>{name}</Container>
 }

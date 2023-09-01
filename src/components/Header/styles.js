@@ -1,9 +1,12 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.header`
   grid-area: header;
   background-color: ${({ theme }) => theme.DARK[700]};
   color: ${({ theme }) => theme.LIGHT[100]};
+  position: sticky;
+  z-index: 2;
+  top: 0;
 
   .hide {
     display: none !important;
@@ -20,7 +23,8 @@ export const Container = styled.header`
     padding-left: 1.2rem;
 
     opacity: ${({ searchDisabled }) => (searchDisabled ? 0.5 : 1)};
-    cursor: ${({ searchDisabled }) => (searchDisabled ? 'not-allowed' :'unset')};
+    cursor: ${({ searchDisabled }) =>
+      searchDisabled ? 'not-allowed' : 'unset'};
 
     > svg {
       min-width: 1.54rem;
@@ -179,4 +183,4 @@ export const Container = styled.header`
       }
     }
   }
-`;
+`

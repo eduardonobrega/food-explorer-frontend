@@ -1,43 +1,43 @@
-import { FiChevronLeft, FiUpload } from 'react-icons/fi';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { FiChevronLeft, FiUpload } from 'react-icons/fi'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
-import { api } from '../../services/api';
+import { api } from '../../services/api'
 
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
-import { LinkText } from '../../components/LinkText';
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
-import { Select } from '../../components/Select';
-import { AddIngredients } from '../../components/AddIngredients';
+import { Header } from '../../components/Header'
+import { Footer } from '../../components/Footer'
+import { LinkText } from '../../components/LinkText'
+import { Input } from '../../components/Input'
+import { Button } from '../../components/Button'
+import { Select } from '../../components/Select'
+import { AddIngredients } from '../../components/AddIngredients'
 
-import { Container, Form, Textarea } from './styles';
+import { Container, Form, Textarea } from './styles'
 
 export function Edit() {
-  const [photoFile, setPhotoFile] = useState(null);
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('meal');
-  const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState('');
-  const [ingredients, setIngredients] = useState([]);
-  const [newIngredient, setNewIngredient] = useState('');
+  const [photoFile, setPhotoFile] = useState(null)
+  const [name, setName] = useState('')
+  const [category, setCategory] = useState('meal')
+  const [price, setPrice] = useState(0)
+  const [description, setDescription] = useState('')
+  const [ingredients, setIngredients] = useState([])
+  const [newIngredient, setNewIngredient] = useState('')
 
-  const navigate = useNavigate();
-  const { id } = useParams();
+  const navigate = useNavigate()
+  const { id } = useParams()
 
   async function updateDish() {
-    const notANumber = isNaN(price) || price === '';
+    const notANumber = isNaN(price) || price === ''
 
     if (!name || price < 0 || notANumber) {
-      return;
+      return
     }
 
-    if (newIngredient != '') {
+    if (newIngredient !== '') {
       return toast.warn(
-        `Clique no + para adicionar o ingredient tag: ${newIngredient}. ou limpe o campo!`
-      );
+        `Clique no + para adicionar o ingredient tag: ${newIngredient}. ou limpe o campo!`,
+      )
     }
 
     try {
@@ -47,79 +47,77 @@ export function Edit() {
         price,
         description,
         ingredients,
-      });
+      })
 
       if (photoFile) {
-        const fileUploadForm = new FormData();
-        fileUploadForm.append('photo', photoFile);
+        const fileUploadForm = new FormData()
+        fileUploadForm.append('photo', photoFile)
 
-        await api.patch(`dishes/photo/${id}`, fileUploadForm);
+        await api.patch(`dishes/photo/${id}`, fileUploadForm)
       }
-      toast.success('Prato atualizado!');
-      navigate(-1);
+      toast.success('Prato atualizado!')
+      navigate(-1)
     } catch (error) {
       if (error.response) {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message)
       } else {
-        toast.error('Não foi possível atualizar!');
+        toast.error('Não foi possível atualizar!')
       }
     }
   }
 
   async function removeDish() {
-    const confirmation = confirm(`Certeza que deseja remover o ${name}`);
+    const confirmation = confirm(`Certeza que deseja remover o ${name}`)
     if (confirmation) {
-      await api.delete(`/dishes/${id}`);
-      toast.success('Prato removido!');
-      navigate('/');
+      await api.delete(`/dishes/${id}`)
+      toast.success('Prato removido!')
+      navigate('/')
     }
   }
 
   function handleNewIngredient() {
     if (newIngredient) {
-      const isNewIngredient = !ingredients.includes(newIngredient);
+      const isNewIngredient = !ingredients.includes(newIngredient)
       if (isNewIngredient) {
-        setIngredients((prevState) => [...prevState, newIngredient]);
+        setIngredients((prevState) => [...prevState, newIngredient])
       } else {
-        toast.warn('Ingredient já Adicionado');
+        toast.warn('Ingredient já Adicionado')
       }
     }
 
-    setNewIngredient('');
-    document.getElementById('add').focus();
+    setNewIngredient('')
+    document.getElementById('add').focus()
   }
 
   function handleRemoveIngredient(ingredientDeleted) {
     setIngredients((prevState) =>
-      prevState.filter((ingredient) => ingredient !== ingredientDeleted)
-    );
+      prevState.filter((ingredient) => ingredient !== ingredientDeleted),
+    )
   }
 
   function handleUploadPhoto(event) {
-    const file = event.target.files[0];
-    setPhotoFile(file);
+    const file = event.target.files[0]
+    setPhotoFile(file)
   }
 
   useEffect(() => {
     async function fetchDish() {
-      const response = await api.get(`/dishes/${id}`);
+      const response = await api.get(`/dishes/${id}`)
 
-      const dish = response.data;
+      const dish = response.data
 
-      setName(dish.name);
-      setIngredients(dish.ingredients.map((ingredient) => ingredient.name));
-      setPrice(dish.price);
-      setDescription(dish.description);
-      setCategory(dish.category);
+      setName(dish.name)
+      setIngredients(dish.ingredients.map((ingredient) => ingredient.name))
+      setPrice(dish.price)
+      setDescription(dish.description)
+      setCategory(dish.category)
     }
 
-    fetchDish();
-  }, []);
+    fetchDish()
+  }, [id])
 
   return (
     <Container>
-      <Header />
-
       <div className="wrapper">
         <LinkText name="voltar" icon={FiChevronLeft} to={-1} />
       </div>
@@ -177,7 +175,7 @@ export function Edit() {
                   <AddIngredients
                     key={String(index)}
                     value={ingredient}
-                    onClick={(e) => handleRemoveIngredient(ingredient)}
+                    onClick={() => handleRemoveIngredient(ingredient)}
                     size={String(ingredient.length)}
                   />
                 ))}
@@ -230,7 +228,6 @@ export function Edit() {
           </div>
         </Form>
       </main>
-      <Footer />
     </Container>
-  );
+  )
 }

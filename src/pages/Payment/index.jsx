@@ -1,34 +1,33 @@
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 
-import photoPlaceholder from '../../assets/photoPlaceholder.png';
-import { api } from '../../services/api';
+import photoPlaceholder from '../../assets/photoPlaceholder.png'
+import { api } from '../../services/api'
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth'
 
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
-import { DishItem } from '../../components/DishItem';
-import { Button } from '../../components/Button';
-import { PaymentItem } from '../../components/PaymentItem';
+import { Header } from '../../components/Header'
+import { Footer } from '../../components/Footer'
+import { DishItem } from '../../components/DishItem'
+import { Button } from '../../components/Button'
+import { PaymentItem } from '../../components/PaymentItem'
 
-import { Container, Content } from './styles';
+import { Container, Content } from './styles'
 
 export function Payment() {
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState(0)
 
-  const { updateRequests, userRequests } = useAuth();
+  const { updateRequests, userRequests } = useAuth()
 
   async function handleRemoveRequest(id) {
-    await api.delete(`/requests/${id}`);
-    await updateRequests();
+    await api.delete(`/requests/${id}`)
+    await updateRequests()
   }
 
   useEffect(() => {
-    const sum = userRequests.reduce((acc, request) => acc + request.subTotal, 0);
-    setTotal(sum);
-  }, [userRequests]);
-
+    const sum = userRequests.reduce((acc, request) => acc + request.subTotal, 0)
+    setTotal(sum)
+  }, [userRequests])
 
   return (
     <Container>
@@ -80,5 +79,5 @@ export function Payment() {
       </main>
       <Footer />
     </Container>
-  );
+  )
 }

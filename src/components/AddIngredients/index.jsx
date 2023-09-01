@@ -1,6 +1,6 @@
-import { FiX, FiPlus } from 'react-icons/fi';
+import { FiX, FiPlus } from 'react-icons/fi'
 
-import { Container } from './styles';
+import { Container } from './styles'
 
 export function AddIngredients({ isNew = false, onClick, size, ...rest }) {
   return (
@@ -17,5 +17,5 @@ export function AddIngredients({ isNew = false, onClick, size, ...rest }) {
         {isNew ? <FiPlus /> : <FiX />}
       </button>
     </Container>
-  );
+  )
 }

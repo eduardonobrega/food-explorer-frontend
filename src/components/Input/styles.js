@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   color: ${({ theme }) => theme.LIGHT[400]};
@@ -23,10 +23,9 @@ export const Container = styled.div`
     &:focus {
       outline: 2px solid ${({ theme }) => theme.TINTS.CAKE[300]};
     }
-    
 
     &::placeholder {
       color: ${({ theme }) => theme.LIGHT[500]};
     }
   }
-`;
+`

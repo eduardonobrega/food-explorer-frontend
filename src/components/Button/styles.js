@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.button`
   background-color: ${({ theme }) => theme.TINTS.TOMATO[100]};
@@ -27,4 +27,4 @@ export const Container = styled.button`
   > svg {
     font-size: 2.4rem;
   }
-`;
+`

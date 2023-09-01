@@ -1,11 +1,11 @@
-import { FiChevronLeft } from 'react-icons/fi';
+import { FiChevronLeft } from 'react-icons/fi'
 
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
-import { LinkText } from '../../components/LinkText';
-import { PaymentItem } from '../../components/PaymentItem';
+import { Header } from '../../components/Header'
+import { Footer } from '../../components/Footer'
+import { LinkText } from '../../components/LinkText'
+import { PaymentItem } from '../../components/PaymentItem'
 
-import { Container, Content } from './styles';
+import { Container, Content } from './styles'
 
 export function PaymentOnly() {
   return (
@@ -20,11 +20,11 @@ export function PaymentOnly() {
         <Content>
           <section id="payment">
             <h1>Pagamento</h1>
-            <PaymentItem/>
+            <PaymentItem />
           </section>
         </Content>
       </main>
       <Footer />
     </Container>
-  );
+  )
 }

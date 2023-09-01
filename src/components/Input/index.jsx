@@ -1,4 +1,4 @@
-import { Container } from './styles';
+import { Container } from './styles'
 
 export function Input({ id, label, ...rest }) {
   return (
@@ -6,5 +6,5 @@ export function Input({ id, label, ...rest }) {
       <label htmlFor={id}>{label}</label>
       <input id={id} {...rest} />
     </Container>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   min-height: 100vh;
@@ -94,7 +94,7 @@ export const Container = styled.div`
       opacity: 1;
     }
   }
-`;
+`
 
 export const Form = styled.form`
   margin: 0 auto;
@@ -133,7 +133,7 @@ export const Form = styled.form`
     -webkit-animation: tilt-in-tr 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94)
       both;
     animation: tilt-in-tr 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    
+
     h2 {
       display: block;
       text-align: center;
@@ -304,4 +304,4 @@ export const Form = styled.form`
       animation-timing-function: ease-out;
     }
   }
-`;
+`

@@ -1,14 +1,14 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { ToastContainer} from 'react-toastify';
-import { AuthProvider } from './hooks/auth';
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { ToastContainer } from 'react-toastify'
+import { AuthProvider } from './hooks/auth'
 
-import { ThemeProvider } from 'styled-components';
-import theme from './styles/theme';
-import GlobalStyles from './styles/global';
-import 'react-toastify/dist/ReactToastify.css';
+import { ThemeProvider } from 'styled-components'
+import theme from './styles/theme'
+import GlobalStyles from './styles/global'
+import 'react-toastify/dist/ReactToastify.css'
 
-import { Routes } from './routes';
+import { Routes } from './routes'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -30,5 +30,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         />
       </AuthProvider>
     </ThemeProvider>
-  </React.StrictMode>
-);
+  </React.StrictMode>,
+)

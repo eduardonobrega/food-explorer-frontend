@@ -1,10 +1,12 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.footer`
-  grid-area: footer;
   background-color: ${({ theme }) => theme.DARK[600]};
   height: 7.7rem;
-
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
 
   > div {
@@ -42,4 +44,4 @@ export const Container = styled.footer`
       gap: 1rem;
     }
   }
-`;
+`

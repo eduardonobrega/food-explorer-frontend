@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.section`
   /* width: min(100vw, 1122px); */
@@ -21,7 +21,6 @@ export const Container = styled.section`
     /* background-color: blue;
     justify-content: start;
     align-items: center; */
-   
   }
   .swiper-slide {
     /* background-color: yellow; */
@@ -80,4 +79,4 @@ export const Container = styled.section`
       transform: rotate(180deg);
     }
   }
-`;
+`

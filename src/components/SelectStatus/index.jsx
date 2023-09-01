@@ -1,13 +1,13 @@
-import { Container } from './style';
+import { Container } from './style'
 
-import Select from 'react-select';
-import chroma from 'chroma-js';
+import Select from 'react-select'
+import chroma from 'chroma-js'
 
 const options = [
   { value: 'pending', label: 'Pendente', color: '#AB222E' },
   { value: 'preparing', label: 'Preparando', color: '#FBA94C' },
   { value: 'delivered', label: 'Entregue', color: '#04D361' },
-];
+]
 
 const dot = (color = 'transparent') => ({
   alignItems: 'center',
@@ -22,7 +22,7 @@ const dot = (color = 'transparent') => ({
     height: 8,
     width: 8,
   },
-});
+})
 
 const colourStyles = {
   control: (styles, { isDisabled }) => ({
@@ -36,7 +36,7 @@ const colourStyles = {
     minWidth: isDisabled ? '' : 155,
   }),
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    const color = chroma(data.color);
+    const color = chroma(data.color)
     return {
       ...styles,
       backgroundColor: isDisabled
@@ -62,7 +62,7 @@ const colourStyles = {
             : color.alpha(0.3).css()
           : undefined,
       },
-    };
+    }
   },
   input: (styles) => ({ ...styles, ...dot() }),
   placeholder: (styles) => ({ ...styles, ...dot('#ccc') }),
@@ -78,11 +78,11 @@ const colourStyles = {
     ...styles,
     display: isDisabled ? 'none' : 'flex',
   }),
-  menu: (styles, state) => ({
+  menu: (styles) => ({
     ...styles,
     backgroundColor: '#0d1d25',
   }),
-};
+}
 
 export function SelectStatus({
   isDisabled = false,
@@ -101,5 +101,5 @@ export function SelectStatus({
         {...rest}
       />
     </Container>
-  );
+  )
 }

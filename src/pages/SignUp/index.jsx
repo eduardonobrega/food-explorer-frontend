@@ -1,54 +1,54 @@
-import { toast } from 'react-toastify';
+import { toast } from 'react-toastify'
 
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
-import { LinkText } from '../../components/LinkText';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { Input } from '../../components/Input'
+import { Button } from '../../components/Button'
+import { LinkText } from '../../components/LinkText'
 
-import { api } from '../../services/api';
+import { api } from '../../services/api'
 
-import { Container, Form } from './styles';
-import { useAuth } from '../../hooks/auth';
+import { Container, Form } from './styles'
+import { useAuth } from '../../hooks/auth'
 
 export function SignUp() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [btnDisabled, setBtnDisabled] = useState(false);
-  const { signIn } = useAuth();
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [btnDisabled, setBtnDisabled] = useState(false)
+  const { signIn } = useAuth()
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   async function handleSignUp() {
     if (!name || !email || !password) {
-      return toast.warn('Preencha todos os campos!');
+      return toast.warn('Preencha todos os campos!')
     }
 
     if (!email.includes('@')) {
-      return toast.warn('Informe um e-mail válido!');
+      return toast.warn('Informe um e-mail válido!')
     }
     if (password.length < 6) {
-      return toast.warn('Informe uma senha válida!');
+      return toast.warn('Informe uma senha válida!')
     }
 
     try {
-      setBtnDisabled(true);
-      await api.post('/users', { name, email, password });
+      setBtnDisabled(true)
+      await api.post('/users', { name, email, password })
 
-      setEmail('');
-      setPassword('');
-      setName('');
-      toast.success('Cadastro realizado com sucesso!');
-      await signIn({ email, password });
-      navigate('/');
+      setEmail('')
+      setPassword('')
+      setName('')
+      toast.success('Cadastro realizado com sucesso!')
+      await signIn({ email, password })
+      navigate('/')
     } catch (error) {
       if (error.response) {
-        toast.error(error.response.data.message);
+        toast.error(error.response.data.message)
       } else {
-        toast.error('Não foi possível cadastrar');
+        toast.error('Não foi possível cadastrar')
       }
-      setBtnDisabled(false);
+      setBtnDisabled(false)
     }
   }
 
@@ -109,5 +109,5 @@ export function SignUp() {
         <LinkText name="Já tenho uma conta" to={-1} />
       </Form>
     </Container>
-  );
+  )
 }
