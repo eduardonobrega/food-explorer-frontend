@@ -1,10 +1,12 @@
 import { Container } from './styles'
-
-export function Input({ id, label, ...rest }) {
+import { forwardRef } from 'react'
+export const Input = forwardRef(({ id, label, ...rest }, ref) => {
   return (
     <Container>
       <label htmlFor={id}>{label}</label>
-      <input id={id} {...rest} />
+      <input id={id} ref={ref} {...rest} />
     </Container>
   )
-}
+})
+
+Input.displayName = 'Input'

@@ -1,5 +1,12 @@
 import { Container } from './styles'
+import { forwardRef } from 'react'
 
-export function Select({ children, ...rest }) {
-  return <Container {...rest}>{children}</Container>
-}
+export const Select = forwardRef(({ children, ...rest }, ref) => {
+  return (
+    <Container ref={ref} {...rest}>
+      {children}
+    </Container>
+  )
+})
+
+Select.displayName = 'Select'

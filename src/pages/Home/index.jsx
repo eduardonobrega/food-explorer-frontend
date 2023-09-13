@@ -7,13 +7,13 @@ import foots200 from '../../assets/foots-200.svg'
 
 import { Container, Banner } from './styles'
 import { useEffect, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
 
 export function Home() {
-  const [search, setSearch] = useState('')
+  const [search, ,] = useOutletContext()
   const [meals, setMeals] = useState([])
   const [desserts, setDesserts] = useState([])
   const [drinks, setDrinks] = useState([])
-
   useEffect(() => {
     async function fetchDishes() {
       const response = await api.get(`/dishes/?search=${search}`)
@@ -24,6 +24,7 @@ export function Home() {
 
     fetchDishes()
   }, [search])
+
   return (
     <Container>
       <Banner>

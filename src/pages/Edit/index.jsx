@@ -5,29 +5,36 @@ import { toast } from 'react-toastify'
 
 import { api } from '../../services/api'
 
-import { Header } from '../../components/Header'
-import { Footer } from '../../components/Footer'
 import { LinkText } from '../../components/LinkText'
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { Select } from '../../components/Select'
 import { AddIngredients } from '../../components/AddIngredients'
+import { useForm } from 'react-hook-form'
 
 import { Container, Form, Textarea } from './styles'
 
 export function Edit() {
-  const [photoFile, setPhotoFile] = useState(null)
-  const [name, setName] = useState('')
-  const [category, setCategory] = useState('meal')
-  const [price, setPrice] = useState(0)
-  const [description, setDescription] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [newIngredient, setNewIngredient] = useState('')
 
   const navigate = useNavigate()
   const { id } = useParams()
 
-  async function updateDish() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { isSubmitting },
+  } = useForm()
+
+  const photoFile = watch('photo')
+
+  async function handleUpdateDishForm(data) {
+    const photo = data.photo ? data.photo[0] : null
+    const { name, category, price, description } = data
+
     const notANumber = isNaN(price) || price === ''
 
     if (!name || price < 0 || notANumber) {
@@ -49,9 +56,9 @@ export function Edit() {
         ingredients,
       })
 
-      if (photoFile) {
+      if (photo) {
         const fileUploadForm = new FormData()
-        fileUploadForm.append('photo', photoFile)
+        fileUploadForm.append('photo', photo)
 
         await api.patch(`dishes/photo/${id}`, fileUploadForm)
       }
@@ -95,26 +102,26 @@ export function Edit() {
     )
   }
 
-  function handleUploadPhoto(event) {
-    const file = event.target.files[0]
-    setPhotoFile(file)
-  }
-
   useEffect(() => {
     async function fetchDish() {
       const response = await api.get(`/dishes/${id}`)
 
       const dish = response.data
 
-      setName(dish.name)
       setIngredients(dish.ingredients.map((ingredient) => ingredient.name))
-      setPrice(dish.price)
-      setDescription(dish.description)
-      setCategory(dish.category)
+      if (dish) {
+        reset({
+          name: dish.name,
+          price: dish.price,
+          description: dish.description,
+          category: dish.category,
+          photo: null,
+        })
+      }
     }
 
     fetchDish()
-  }, [id])
+  }, [id, reset])
 
   return (
     <Container>
@@ -123,7 +130,7 @@ export function Edit() {
       </div>
 
       <main>
-        <Form onSubmit={(e) => e.preventDefault()}>
+        <Form onSubmit={handleSubmit(handleUpdateDishForm)}>
           <h1>Editar prato</h1>
 
           <div id="threeColumns">
@@ -132,14 +139,14 @@ export function Edit() {
               <div>
                 <span>
                   <FiUpload />{' '}
-                  {photoFile ? photoFile.name : 'Selecione a imagem'}
+                  {photoFile ? photoFile[0]?.name : 'Selecione a imagem'}
                 </span>
                 <Input
                   id="image"
                   accept="image/png, image/jpeg"
                   type="file"
                   style={{ cursor: 'pointer' }}
-                  onChange={handleUploadPhoto}
+                  {...register('photo')}
                 />
               </div>
             </div>
@@ -149,17 +156,12 @@ export function Edit() {
               label="Nome"
               placeholder="Salada Ceasar"
               required
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              {...register('name')}
             />
 
             <div>
               <label htmlFor="category">Categoria</label>
-              <Select
-                id="category"
-                onChange={(e) => setCategory(e.target.value)}
-                value={category}
-              >
+              <Select id="category" {...register('category')}>
                 <option value="meal">Refeição</option>
                 <option value="dessert">Sobremesa</option>
                 <option value="drink">Bebida</option>
@@ -198,8 +200,7 @@ export function Edit() {
               placeholder="R$ 00,00"
               min="0"
               step="0.010"
-              value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              {...register('price')}
             />
           </div>
 
@@ -208,8 +209,7 @@ export function Edit() {
             <Textarea
               id="description"
               placeholder="Fale brevemente sobre o prato, seus ingredientes e composição"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              {...register('description')}
             />
           </div>
 
@@ -223,7 +223,7 @@ export function Edit() {
             <Button
               id="buttonAdd"
               title="Salvar alterações"
-              onClick={updateDish}
+              disabled={isSubmitting}
             />
           </div>
         </Form>

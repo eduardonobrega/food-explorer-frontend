@@ -26,7 +26,7 @@ export function Card({ dish }) {
     : photoPlaceholder
 
   async function handleRequest() {
-    await createRequests({ quantity, dish_id: dish.id })
+    await createRequests({ quantity, dishId: dish.id })
   }
 
   async function handleFavorite() {
