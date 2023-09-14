@@ -1,13 +1,31 @@
 import styled from 'styled-components'
+import * as Dialog from '@radix-ui/react-dialog'
 
-export const Container = styled.div`
-  position: sticky;
+export const Content = styled(Dialog.Content)`
   background-color: ${({ theme }) => theme.DARK[400]};
   height: 100vh;
-  display: none;
 
-  &.menu.show {
-    display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+
+  > header {
+    background-color: ${({ theme }) => theme.DARK[700]};
+
+    padding: 6rem 2.8rem 2.8rem;
+    height: 11.4rem;
+
+    display: flex;
+    align-items: center;
+    gap: 1.6rem;
+
+    button {
+      background-color: transparent;
+    }
+
+    > h2 {
+      font-size: 2.1rem;
+    }
   }
 
   > .menu-content {
@@ -51,5 +69,9 @@ export const Container = styled.div`
       transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
       opacity: 1;
     }
+  }
+
+  @media (min-width: 768px) {
+    display: none;
   }
 `

@@ -1,26 +1,33 @@
 import { FiLogOut, FiShoppingCart } from 'react-icons/fi'
 import { IoReceiptOutline } from 'react-icons/io5'
 import { Link, useNavigate } from 'react-router-dom'
+import * as Dialog from '@radix-ui/react-dialog'
 
 import { useAuth } from '../../hooks/auth'
 
 import { Button } from '../Button'
 
 import menu from '../../assets/icons/menu.svg'
-// import close from '../../assets/icons/close.svg'
 import explorer from '../../assets/icons/explorer.svg'
 
 import { Container } from './styles'
 import { LinkText } from '../LinkText'
 import { Search } from './components/Search'
+import { Menu } from './components/Menu'
+import { useState } from 'react'
 
 export function Header({ onSetSearch }) {
   const navigate = useNavigate()
   const { user, signOut, userRequests, userPurchases } = useAuth()
+  const [open, setOPen] = useState(false)
 
   const purchasesPending = userPurchases.filter(
     (purchase) => purchase.status === 'pending',
   )
+
+  function handleCloseMenu() {
+    setOPen(false)
+  }
 
   function handleSignOut() {
     signOut()
@@ -30,11 +37,15 @@ export function Header({ onSetSearch }) {
   return (
     <Container isAdmin={user.isAdmin}>
       <header>
-        <button id="menuBurgue">
-          <img src={menu} alt="menu hambúrguer" />
+        <Dialog.Root open={open} onOpenChange={() => setOPen(!open)}>
+          <Dialog.Trigger asChild>
+            <button id="menuBurgue">
+              <img src={menu} alt="menu hambúrguer" />
+            </button>
+          </Dialog.Trigger>
 
-          {/* <img src={close} alt="menu close" /> */}
-        </button>
+          <Menu onCloseMenu={handleCloseMenu} onSetSearch={onSetSearch} />
+        </Dialog.Root>
         <>
           <Link id="logo" to="/">
             <img src={explorer} alt="Logo foodExplorer" />
@@ -42,7 +53,7 @@ export function Header({ onSetSearch }) {
             {user.isAdmin && <span>admin</span>}
           </Link>
 
-          <Search onSetSearch={onSetSearch} />
+          <Search onSetSearch={onSetSearch} id="search" />
 
           {!user.isAdmin && (
             <div id="buttons">

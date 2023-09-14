@@ -42,7 +42,6 @@ export const Container = styled.header`
 
     @media (max-width: 768px) {
       padding: 5.6rem 0 2.4rem;
-
       > button {
         background-color: transparent;
       }
@@ -74,8 +73,11 @@ export const Container = styled.header`
           place-content: center;
         }
       }
-
+      #search {
+        margin: 0 auto;
+      }
       > #logout,
+      #search,
       > #new,
       #redBtn,
       #historic,

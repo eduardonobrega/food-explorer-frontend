@@ -4,11 +4,11 @@ import { useLocation } from 'react-router-dom'
 
 import { SearchContainer } from './styles.js'
 
-export function Search({ onSetSearch }) {
+export function Search({ onSetSearch, id }) {
   const { pathname } = useLocation()
 
   return (
-    <SearchContainer>
+    <SearchContainer id={id}>
       <FiSearch />
       <Input
         type="search"
