@@ -14,17 +14,20 @@ import { Button } from '../Button'
 import { Container } from './styles'
 import { PurchaseContext } from '../../contexts/purchase'
 import { useContextSelector } from 'use-context-selector'
+import { useForm } from 'react-hook-form'
 
 export function PaymentItem() {
   const [pixSelected, setPixSelected] = useState(true)
   const [purchase, setPurchase] = useState('initial') // 'initial await pay delivered';
   const [pixCode, setPixCode] = useState('')
 
-  const [numberCard, setNumberCard] = useState('')
-  const [validityCard, setValidityCard] = useState('')
-  const [CVCCard, setCVCCard] = useState('')
-
   const inputCopy = useRef()
+
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm()
 
   const { createPurchase, userPurchases, userRequests } = useContextSelector(
     PurchaseContext,
@@ -47,12 +50,12 @@ export function PaymentItem() {
     }
   }
 
-  async function handlePurchase() {
+  async function handlePurchase(data) {
     if (userRequests.length === 0) {
       return toast.warn('Adicione oa menos um item no carrinho')
     }
 
-    if (!numberCard || !validityCard || !CVCCard) {
+    if (!data.numberCard || !data.validityCard || !data.CVCCard) {
       return toast.warn('Informe todos os dados do cartão')
     }
 
@@ -128,7 +131,7 @@ export function PaymentItem() {
         )}
 
         {!pixSelected && purchase === 'initial' && (
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form onSubmit={handleSubmit(handlePurchase)}>
             <div className="input-wrapper">
               <label htmlFor="card">Número do Cartão</label>
               <InputMask
@@ -136,8 +139,7 @@ export function PaymentItem() {
                 type="text"
                 mask="9999 9999 9999 9999"
                 placeholder="0000 0000 0000 0000"
-                onChange={(e) => setNumberCard(e.target.value)}
-                required
+                {...register('numberCard')}
               />
             </div>
 
@@ -148,9 +150,8 @@ export function PaymentItem() {
                   id="validity"
                   type="text"
                   mask="99/99"
-                  required
                   placeholder="08/07"
-                  onChange={(e) => setValidityCard(e.target.value)}
+                  {...register('validityCard')}
                 />
               </div>
 
@@ -161,8 +162,7 @@ export function PaymentItem() {
                   type="text"
                   mask="999"
                   placeholder="000"
-                  required
-                  onChange={(e) => setCVCCard(e.target.value)}
+                  {...register('CVCCard')}
                 />
               </div>
             </div>
@@ -170,7 +170,7 @@ export function PaymentItem() {
             <Button
               icon={IoReceiptOutline}
               title="Finalizar pagamento"
-              onClick={handlePurchase}
+              disabled={isSubmitting}
             />
           </form>
         )}
