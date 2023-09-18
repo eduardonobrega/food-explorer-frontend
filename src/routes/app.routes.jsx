@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 
-import { useAuth } from '../hooks/auth'
+import { useAuth } from '../contexts/auth'
 
 import { Dish } from '../pages/Dish'
 import { New } from '../pages/New'
@@ -11,7 +11,7 @@ import { PaymentOnly } from '../pages/PaymentOnly'
 import { Favorites } from '../pages/Favorites'
 import { Requests } from '../pages/Requests'
 import { DefaultLayout } from '../layouts/DefaultLayout'
-import { PurchaseProvider } from '../hooks/purchase'
+import { PurchaseProvider } from '../contexts/purchase'
 
 export function AppRoutes() {
   const { user } = useAuth()

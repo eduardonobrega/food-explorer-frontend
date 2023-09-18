@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { ToastContainer } from 'react-toastify'
-import { AuthProvider } from './hooks/auth'
+import { AuthProvider } from './contexts/auth'
 
 import { ThemeProvider } from 'styled-components'
 import theme from './styles/theme'

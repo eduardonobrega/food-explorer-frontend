@@ -4,7 +4,7 @@ import { LinkText } from '../../components/LinkText'
 import * as zod from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '../../contexts/auth'
 
 import { Container, Form } from './styles'
 import { useForm } from 'react-hook-form'

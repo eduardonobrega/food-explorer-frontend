@@ -8,10 +8,14 @@ import { Button } from '../../components/Button'
 import { PaymentItem } from '../../components/PaymentItem'
 
 import { Container } from './styles'
-import { usePurchase } from '../../hooks/purchase'
+import { PurchaseContext } from '../../contexts/purchase'
+import { useContextSelector } from 'use-context-selector'
 
 export function Payment() {
-  const { removeRequest, userRequests } = usePurchase()
+  const { removeRequest, userRequests } = useContextSelector(
+    PurchaseContext,
+    ({ removeRequest, userRequests }) => ({ removeRequest, userRequests }),
+  )
 
   async function handleRemoveRequest(id) {
     await removeRequest(id)

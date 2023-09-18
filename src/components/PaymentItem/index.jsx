@@ -12,7 +12,8 @@ import clock from '../../assets/clock.svg'
 import { Button } from '../Button'
 
 import { Container } from './styles'
-import { usePurchase } from '../../hooks/purchase'
+import { PurchaseContext } from '../../contexts/purchase'
+import { useContextSelector } from 'use-context-selector'
 
 export function PaymentItem() {
   const [pixSelected, setPixSelected] = useState(true)
@@ -25,7 +26,14 @@ export function PaymentItem() {
 
   const inputCopy = useRef()
 
-  const { createPurchases, userPurchases, userRequests } = usePurchase()
+  const { createPurchase, userPurchases, userRequests } = useContextSelector(
+    PurchaseContext,
+    ({ createPurchase, userPurchases, userRequests }) => ({
+      createPurchase,
+      userPurchases,
+      userRequests,
+    }),
+  )
 
   function copyText() {
     inputCopy.current.select()
@@ -48,7 +56,7 @@ export function PaymentItem() {
       return toast.warn('Informe todos os dados do cartão')
     }
 
-    await createPurchases()
+    await createPurchase()
     toast.success('Recebemos seu pedido e logo logo ele chegará na sua casa!')
     setPurchase('await')
   }
