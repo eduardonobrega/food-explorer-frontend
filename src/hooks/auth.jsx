@@ -8,57 +8,6 @@ const AuthContext = createContext({})
 function AuthProvider({ children }) {
   const [data, setData] = useState({})
 
-  async function createPurchases() {
-    const newPurchase = await api.post('purchases').then((res) => res.data)
-    setData((prevState) => ({
-      ...prevState,
-      purchases: [...prevState.purchases, newPurchase],
-      requests: [],
-    }))
-  }
-
-  async function updateStatusPurchase({ purchaseId, status }) {
-    const updatedAt = await api
-      .patch(`purchases/${purchaseId}`, { status })
-      .then((res) => res.data)
-
-    setData((prevState) => ({
-      ...prevState,
-      purchases: prevState.purchases.map((purchase) =>
-        purchase.id === purchaseId
-          ? { ...purchase, status, updatedAt }
-          : purchase,
-      ),
-    }))
-  }
-
-  async function createRequests({ quantity, dishId }) {
-    const newRequest = await api
-      .post('/requests', {
-        quantity,
-        dish_id: dishId,
-      })
-      .then((res) => res.data)
-
-    const requests = [...data.requests].filter(
-      (request) => request.id !== newRequest.id,
-    )
-
-    requests.push(newRequest)
-    setData((state) => ({
-      ...state,
-      requests,
-    }))
-  }
-
-  async function removeRequest(requestId) {
-    await api.delete(`/requests/${requestId}`)
-    setData((state) => ({
-      ...state,
-      requests: state.requests.filter((request) => request.id !== requestId),
-    }))
-  }
-
   async function signIn({ email, password }) {
     try {
       const response = await api.post('/sessions', { email, password })
@@ -70,17 +19,10 @@ function AuthProvider({ children }) {
       localStorage.setItem('@foodexplorer:token', token)
 
       api.defaults.headers.common.Authorization = `Bearer ${token}`
-      const requests =
-        (await api.get('/requests').then((res) => res.data)) || []
-
-      const purchases =
-        (await api.get('/purchases').then((res) => res.data)) || []
 
       setData({
         user,
         token,
-        requests,
-        purchases,
       })
     } catch (error) {
       if (error.response) {
@@ -102,22 +44,13 @@ function AuthProvider({ children }) {
     async function update() {
       const user = localStorage.getItem('@foodexplorer:user')
       const token = localStorage.getItem('@foodexplorer:token')
-
       if (user && token) {
         api.defaults.headers.common.Authorization = `Bearer ${token}`
 
-        try {
-          const requests = await api.get('/requests').then((res) => res.data)
-
-          const purchases = await api.get('/purchases').then((res) => res.data)
-
-          setData({
-            user: JSON.parse(user),
-            token,
-            requests,
-            purchases,
-          })
-        } catch (error) {}
+        setData({
+          user: JSON.parse(user),
+          token,
+        })
       }
     }
 
@@ -130,12 +63,6 @@ function AuthProvider({ children }) {
         signIn,
         signOut,
         user: data.user,
-        userRequests: data.requests,
-        userPurchases: data.purchases,
-        createRequests,
-        createPurchases,
-        updateStatusPurchase,
-        removeRequest,
       }}
     >
       {children}

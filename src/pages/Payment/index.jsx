@@ -3,16 +3,15 @@ import { Link } from 'react-router-dom'
 import photoPlaceholder from '../../assets/photoPlaceholder.png'
 import { api } from '../../services/api'
 
-import { useAuth } from '../../hooks/auth'
-
 import { DishItem } from '../../components/DishItem'
 import { Button } from '../../components/Button'
 import { PaymentItem } from '../../components/PaymentItem'
 
 import { Container } from './styles'
+import { usePurchase } from '../../hooks/purchase'
 
 export function Payment() {
-  const { removeRequest, userRequests } = useAuth()
+  const { removeRequest, userRequests } = usePurchase()
 
   async function handleRemoveRequest(id) {
     await removeRequest(id)

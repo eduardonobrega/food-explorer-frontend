@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
 import { IoReceiptOutline } from 'react-icons/io5'
-import { useAuth } from '../../hooks/auth'
 import { toast } from 'react-toastify'
 
 import InputMask from 'react-input-mask'
@@ -13,6 +12,7 @@ import clock from '../../assets/clock.svg'
 import { Button } from '../Button'
 
 import { Container } from './styles'
+import { usePurchase } from '../../hooks/purchase'
 
 export function PaymentItem() {
   const [pixSelected, setPixSelected] = useState(true)
@@ -25,7 +25,7 @@ export function PaymentItem() {
 
   const inputCopy = useRef()
 
-  const { createPurchases, userPurchases, userRequests } = useAuth()
+  const { createPurchases, userPurchases, userRequests } = usePurchase()
 
   function copyText() {
     inputCopy.current.select()
